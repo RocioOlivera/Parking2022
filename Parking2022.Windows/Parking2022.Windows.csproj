@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B31CB5E-D45C-447B-BDE7-652553C76AF6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Parking2022.Windows</RootNamespace>
+    <AssemblyName>Parking2022.Windows</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.4.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.4\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmAlquilerDiarioAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlquilerDiarioAE.Designer.cs">
+      <DependentUpon>frmAlquilerDiarioAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlquileresDiarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlquileresDiarios.Designer.cs">
+      <DependentUpon>frmAlquileresDiarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClienteAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClienteAE.Designer.cs">
+      <DependentUpon>frmClienteAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientes.Designer.cs">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCtasCtes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCtasCtes.Designer.cs">
+      <DependentUpon>frmCtasCtes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetalleCtaCte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetalleCtaCte.Designer.cs">
+      <DependentUpon>frmDetalleCtaCte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFinalizarAlquiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinalizarAlquiler.Designer.cs">
+      <DependentUpon>frmFinalizarAlquiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFormPrincipal.Designer.cs">
+      <DependentUpon>frmFormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTarifaAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTarifaAE.Designer.cs">
+      <DependentUpon>frmTarifaAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTarifas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTarifas.Designer.cs">
+      <DependentUpon>frmTarifas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoDeSectorAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoDeSectorAE.Designer.cs">
+      <DependentUpon>frmTipoDeSectorAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTipoDeVehiculoAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoDeVehiculoAE.Designer.cs">
+      <DependentUpon>frmTipoDeVehiculoAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTiposDeSectores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposDeSectores.Designer.cs">
+      <DependentUpon>frmTiposDeSectores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTiposDeVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTiposDeVehiculos.Designer.cs">
+      <DependentUpon>frmTiposDeVehiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\HelperCalculos.cs" />
+    <Compile Include="Helpers\HelperCombos.cs" />
+    <Compile Include="Helpers\HelperForm.cs" />
+    <Compile Include="Helpers\HelperGrid.cs" />
+    <Compile Include="Helpers\HelperMessage.cs" />
+    <Compile Include="Helpers\TipoMensaje.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAlquilerDiarioAE.resx">
+      <DependentUpon>frmAlquilerDiarioAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlquileresDiarios.resx">
+      <DependentUpon>frmAlquileresDiarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClienteAE.resx">
+      <DependentUpon>frmClienteAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCtasCtes.resx">
+      <DependentUpon>frmCtasCtes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetalleCtaCte.resx">
+      <DependentUpon>frmDetalleCtaCte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinalizarAlquiler.resx">
+      <DependentUpon>frmFinalizarAlquiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFormPrincipal.resx">
+      <DependentUpon>frmFormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTarifaAE.resx">
+      <DependentUpon>frmTarifaAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTarifas.resx">
+      <DependentUpon>frmTarifas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoDeSectorAE.resx">
+      <DependentUpon>frmTipoDeSectorAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoDeVehiculoAE.resx">
+      <DependentUpon>frmTipoDeVehiculoAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposDeSectores.resx">
+      <DependentUpon>frmTiposDeSectores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTiposDeVehiculos.resx">
+      <DependentUpon>frmTiposDeVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Parking2022.Datos\Parking2022.Datos.csproj">
+      <Project>{F90F8F2C-50CA-441A-A0D8-FC5FB96F7CFB}</Project>
+      <Name>Parking2022.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parking2022.Entidades\Parking2022.Entidades.csproj">
+      <Project>{3f5af061-8e23-4d27-9a0f-0fe5e824d2fa}</Project>
+      <Name>Parking2022.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Parking2022.Servicios\Parking2022.Servicios.csproj">
+      <Project>{3bdc5775-b680-4dc3-b961-311d1b3eab32}</Project>
+      <Name>Parking2022.Servicios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
