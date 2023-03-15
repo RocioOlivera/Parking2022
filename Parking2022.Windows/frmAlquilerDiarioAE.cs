@@ -98,7 +98,6 @@ namespace Parking2022.Windows
         {
             bool valido = true;
             errorProvider1.Clear();
-
             if (cbxTipoVehiculo.SelectedIndex == 0)
             {
                 valido = false;

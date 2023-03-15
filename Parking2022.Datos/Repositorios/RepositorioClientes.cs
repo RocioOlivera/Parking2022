@@ -24,7 +24,7 @@ namespace Parking2022.Datos.Repositorios
             {
                 var cadenaComando =
                     "SELECT ClienteId, ApellidoYNombre, NumDocumento, TelDeContacto, RowVersion FROM Clientes ORDER BY ApellidoYNombre";
-                var comando = new SqlCommand(cadenaComando, cn);
+                SqlCommand comando = new SqlCommand(cadenaComando, cn);
                 using (var reader = comando.ExecuteReader())
                 {
                     while (reader.Read())
@@ -57,14 +57,14 @@ namespace Parking2022.Datos.Repositorios
         {
             try
             {
-                var cadenaComando = "SELECT COUNT(*) FROM Clientes WHERE ApellidoYNombre=@nom";
+                var cadenaComando = "SELECT COUNT(*) FROM Clientes WHERE NumDocumento=@numdoc";
                 if (cliente.ClienteId != 0)
                 {
                     cadenaComando += " AND ClienteId<>@Id";
                 }
 
                 var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@nom", cliente.ApellidoYNombre);
+                comando.Parameters.AddWithValue("@numdoc", cliente.ApellidoYNombre);
                 if (cliente.ClienteId != 0)
                 {
                     comando.Parameters.AddWithValue("@Id", cliente.ClienteId);

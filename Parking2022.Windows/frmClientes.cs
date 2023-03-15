@@ -58,22 +58,31 @@ namespace Parking2022.Windows
             try
             {
                 Cliente cliente = frm.GetCliente();
-                if (servicio.Existe(cliente))
+                if (!servicio.Existe(cliente))
                 {
-                    HelperMessage.Mensaje(TipoMensaje.Error, "Cliente existente!!!", "ERROR");
+                    int registrosAfectados = servicio.Agregar(cliente);
+                    if (registrosAfectados == 0)
+                    {
+                        HelperMessage.Mensaje(TipoMensaje.Error, "No se agregaron registros", "ERROR");
+                        HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
+                    }
+                    else
+                    {
+                        DataGridViewRow r = HelperGrid.ConstruirFila(dgvDatos);
+                        HelperGrid.SetearFila(r, cliente);
+                        HelperGrid.AgregarFila(dgvDatos, r);
+                        HelperMessage.Mensaje(TipoMensaje.OK, "Registro agregado", "Mensaje");
+                    }
                 }
                 else
                 {
-                    int registors = servicio.Agregar(cliente);
-                    HelperMessage.Mensaje(TipoMensaje.OK, "Cliente agregado!!!", "Mensaje");
-                    var r = HelperGrid.ConstruirFila(dgvDatos);
-                    HelperGrid.SetearFila(r, cliente);
-                    HelperGrid.AgregarFila(dgvDatos, r);
+                    HelperMessage.Mensaje(TipoMensaje.Error, "El numero de documento ya existe en la base de datos.", "Error");
+                    
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                HelperMessage.Mensaje(TipoMensaje.Error, ex.Message, "Error");
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

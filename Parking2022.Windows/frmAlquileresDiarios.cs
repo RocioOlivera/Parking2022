@@ -65,29 +65,30 @@ namespace Parking2022.Windows
             try
             {
                 AlquilerDiario alquilerDiario = frm.GetAlquilerDiario();
-                //int registros = servicio.Agregar(alquilerDiario);
-                //HelperMessage.Mensaje(TipoMensaje.OK, "Alquiler agregado!!!", "Mensaje");
-                //var r = HelperGrid.ConstruirFila(dgvDatos);
-                //HelperGrid.SetearFila(r, alquilerDiario);
-                //HelperGrid.AgregarFila(dgvDatos, r);
-                int registrosAfectados = servicio.Agregar(alquilerDiario);
-                if (registrosAfectados == 0)
+                if (!servicio.Existe(alquilerDiario))
                 {
-                    HelperMessage.Mensaje(TipoMensaje.Warning, "No se agregaron registros", "Advertencia");
-                    HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
+                    int registrosAfectados = servicio.Agregar(alquilerDiario);
+                    if (registrosAfectados == 0)
+                    {
+                        HelperMessage.Mensaje(TipoMensaje.Warning, "No se agregaron registros", "Advertencia");
+                        HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
+                    }
+                    else
+                    {
+                        DataGridViewRow r = HelperGrid.ConstruirFila(dgvDatos);
+                        HelperGrid.SetearFila(r, alquilerDiario);
+                        HelperGrid.AgregarFila(dgvDatos, r);
+                        HelperMessage.Mensaje(TipoMensaje.OK, "Registro agregado", "Mensaje");
+                    }
                 }
                 else
                 {
-                    DataGridViewRow r = HelperGrid.ConstruirFila(dgvDatos);
-                    HelperGrid.SetearFila(r, alquilerDiario);
-                    HelperGrid.AgregarFila(dgvDatos, r);
-                    HelperMessage.Mensaje(TipoMensaje.OK, "Registro agregado", "Mensaje");
+                    HelperMessage.Mensaje(TipoMensaje.Error, "Patente ya existente en la base de datos.", "Error");
                 }
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -99,37 +100,41 @@ namespace Parking2022.Windows
             }
             int registrosAfectados = 0;
             var r = dgvDatos.SelectedRows[0];
-            AlquilerDiario ad = (AlquilerDiario)r.Tag;
+            AlquilerDiario alquilerDiario = (AlquilerDiario)r.Tag;
 
             try
             {
 
                 frmAlquilerDiarioAE frm = new frmAlquilerDiarioAE() { Text = "Editar Alquiler." };
-                frm.SetAlquilerDiario(ad);
+                frm.SetAlquilerDiario(alquilerDiario);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.Cancel)
                 {
                     return;
                 }
 
-                ad = frm.GetAlquilerDiario();
-                registrosAfectados = servicio.Editar(ad);
-                if (registrosAfectados == 0)
+                alquilerDiario = frm.GetAlquilerDiario();
+                registrosAfectados = servicio.Editar(alquilerDiario);
+                if (registrosAfectados==0)
                 {
+                    int registros = servicio.Editar(alquilerDiario);
+                    if (registrosAfectados == 0)
+                    {
 
-                    HelperMessage.Mensaje(TipoMensaje.Warning, "No se pudo editar", "Mensaje");
-
+                        HelperMessage.Mensaje(TipoMensaje.Warning, "No se pudo editar", "Mensaje");
+                    }
                 }
                 else
                 {
-                    HelperGrid.SetearFila(r, ad);
+                    HelperGrid.SetearFila(r, alquilerDiario);
                     HelperMessage.Mensaje(TipoMensaje.OK, "Registro editado", "Mensaje");
 
                 }
+                
             }
             catch (Exception exception)
             {
-                HelperGrid.SetearFila(r, ad);
+                HelperGrid.SetearFila(r, alquilerDiario);
                 HelperMessage.Mensaje(TipoMensaje.Error, exception.Message, "Error");
             }
         }

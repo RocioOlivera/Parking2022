@@ -73,25 +73,27 @@ namespace Parking2022.Servicios.Servicios
                 throw new Exception(e.Message);
             }
         }
-        //public bool Existe(AlquilerDiario alquilerDiario)
-        //{
-        //    try
-        //    {
-        //        bool existe = true;
-        //        using (var cn = ConexionBd.GetInstancia().AbrirConexion())
-        //        {
-        //            repositorio = new RepositorioAlquileresDiarios(cn);
 
-        //            existe = repositorio.Existe(alquilerDiario);
-        //        }
+        public bool Existe(AlquilerDiario alquilerDiario)
+        {
+            try
+            {
+                bool existe = true;
+                using (var cn = ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    repositorio = new RepositorioAlquileresDiarios(cn);
 
-        //        return existe;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception(e.Message);
-        //    }
-        //}
+                    existe = repositorio.Existe(alquilerDiario);
+                }
+
+                return existe;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public int Agregar(AlquilerDiario alquilerDiario)
         {
             try

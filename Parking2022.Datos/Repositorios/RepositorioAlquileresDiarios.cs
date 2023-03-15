@@ -83,30 +83,32 @@ namespace Parking2022.Datos.Repositorios
                 RowVersion = (byte[])reader[7]
             };
         }
-        //public bool Existe(AlquilerDiario alquilerDiario)
-        //{
-        //    try
-        //    {
-        //        var cadenaComando = "SELECT COUNT(*) FROM AlquileresEnElDia WHERE Patente=@patente";
-        //        if (alquilerDiario.AlquilerEnElDiaId != 0)
-        //        {
-        //            cadenaComando += " AND AlquilerEnElDiaId<>@Id";
-        //        }
 
-        //        var comando = new SqlCommand(cadenaComando, cn);
-        //        comando.Parameters.AddWithValue("@patente", alquilerDiario.Patente);
-        //        if (alquilerDiario.AlquilerEnElDiaId != 0)
-        //        {
-        //            comando.Parameters.AddWithValue("@AlquilerEnElDiaId", alquilerDiario.AlquilerEnElDiaId);
-        //        }
+        public bool Existe(AlquilerDiario alquilerDiario)
+        {
+            try
+            {
+                var cadenaComando = "SELECT COUNT(*) FROM AlquileresEnElDia WHERE Patente=@patente";
+                if (alquilerDiario.AlquilerEnElDiaId != 0)
+                {
+                    cadenaComando += " AND AlquilerEnElDiaId<>@Id";
+                }
 
-        //        return (int)comando.ExecuteScalar() > 0;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception(e.Message);
-        //    }
-        //}
+                var comando = new SqlCommand(cadenaComando, cn);
+                comando.Parameters.AddWithValue("@patente", alquilerDiario.Patente);
+                if (alquilerDiario.AlquilerEnElDiaId != 0)
+                {
+                    comando.Parameters.AddWithValue("@Id", alquilerDiario.AlquilerEnElDiaId);
+                }
+
+                return (int)comando.ExecuteScalar() > 0;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public int Agregar(AlquilerDiario alquilerDiario)
         {
             int registrosAfectados = 0;

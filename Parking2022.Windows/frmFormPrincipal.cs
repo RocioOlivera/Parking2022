@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using Parking2022.Datos.Repositorios;
+using Parking2022.Entidades.Entidades;
+using Parking2022.Servicios.Servicios;
 
 namespace Parking2022.Windows
 {
     public partial class frmFormPrincipal : Form
     {
+        private SqlConnection cn;
 
         private IconMenuItem menuActivo = null;
         private Form formularioActivo = null;
@@ -22,12 +27,22 @@ namespace Parking2022.Windows
             InitializeComponent();
         }
 
-
-
         private void frmFormPrincipal_Load(object sender, EventArgs e)
         {
-
+            RepositorioFinalizarAlquileres repositorioFinalizar = new RepositorioFinalizarAlquileres(cn);
+            lblFecha.Text = DateTime.Now.ToShortDateString();
+            lblRecaudado.Text = repositorioFinalizar.GetRecaudado().ToString();
         }
+
+        
+        //protected override void OnLoad(EventArgs e)
+        //{
+        //    base.OnLoad(e);
+
+        //    lblFecha.Text = recaudacion.Fecha.ToString();
+        //    lblRecaudado.Text = recaudacion.Monto.ToString();
+
+        //}
 
         private void AbrirFormulario(IconMenuItem menu, Form formulario)
         {

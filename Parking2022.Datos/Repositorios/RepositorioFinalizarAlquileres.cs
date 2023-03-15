@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,90 +18,45 @@ namespace Parking2022.Datos.Repositorios
             this.cn = cn;
         }
 
-        public List<FinalizarAlquilerDiario> GetLista()
+        public double GetRecaudado()
         {
-            List<FinalizarAlquilerDiario> lista = new List<FinalizarAlquilerDiario>();
+            double recaudado;
             try
             {
-                var cadenaComando = "SELECT FechaIngreso, FechaSalida, TipoTarifaId, Pagado, Retirado, RowVersion FROM AlquileresEnElDia";
-                var comando = new SqlCommand(cadenaComando, cn);
+                var cadenaComando = "SELECT SUM(Monto) FROM RecaudacionDiaria WHERE Fecha=CONVERT(DATE,GETDATE())";
+                SqlCommand comando = new SqlCommand(cadenaComando, cn);
+                return recaudado=(double)(decimal)comando.ExecuteScalar();
 
-                using (var reader = comando.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        FinalizarAlquilerDiario alquilerDiario = ConstruirFinalizarAlquilerDiario(reader);
-                        lista.Add(alquilerDiario);
-                    }
-                }
-                return lista;
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-            //List<FinalizarAlquilerDiario> lista = new List<FinalizarAlquilerDiario>();
-            //try
-            //{
-            //    var cadenaComando = "SELECT FinAlquilerDiaId, TipoVehiculoId, AlquilerEnElDiaId, HoraSalida, TotalHoras, TipoTarifaId, Costo, " +
-            //                        "ImporteAPagar, Abonado, Retirado, RowVersion FROM FinalizarAlquileresDiarios";
-            //    var comando = new SqlCommand(cadenaComando, cn);
-
-            //    using (var reader = comando.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            FinalizarAlquilerDiario finalizarAlquilerDiario = ConstruirFinalizarAlquilerDiario(reader);
-            //            lista.Add(finalizarAlquilerDiario);
-            //        }
-            //    }
-            //    return lista;
-            //}
-            //catch (Exception e)
-            //{
-            //    throw new Exception(e.Message);
-            //}
         }
 
-        private FinalizarAlquilerDiario ConstruirFinalizarAlquilerDiario(SqlDataReader reader)
+        private Recaudacion ConstruirRecaudacion(SqlDataReader reader)
         {
-            return new FinalizarAlquilerDiario()
+            return new Recaudacion()
             {
-                FinAlquilerDiaId = reader.GetInt32(0),
-                TipoVehiculoId = reader.GetInt32(1),
-                AlquilerEnElDiaId = reader.GetInt32(2),
-                HoraSalida = reader.GetDateTime(3),
-                TotalHoras = reader.GetTimeSpan(4),
-                TarifaId = reader.GetInt32(5),
-                Costo = reader.GetDouble(6),
-                ImporteAPagar = reader.GetDouble(7),
-                Abonado = reader.GetBoolean(8),
-                Retirado = reader.GetBoolean(9),
-                RowVersion = (byte[]) reader[10]
+                RecaudacionId = reader.GetInt32(0),
+                Monto = reader.GetDecimal(1),
+                Fecha = reader.GetDateTime(2),
+                RowVersion = (byte[])reader[3]
             };
-
         }
 
-        public int Agregar(FinalizarAlquilerDiario finalizarAlquilerDiario)
+        public int Agregar(Recaudacion recaudacion)
         {
             int registrosAfectados = 0;
             try
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("INSERT INTO FinalizarAlquileresDiarios (TipoVehiculoId, AlquilerEnElDiaId, HoraSalida, TotalHoras, TipoTarifaId, Costo, " +
-                          "ImporteAPagar, Abonado, Retirado) VALUES(@tipov, @alqui, @hrsalida, @hrtotal, @tipot, @costo, @importe, @abonado, " +
-                          "@retirado)");
+                sb.Append("INSERT INTO RecaudacionDiaria (Monto, Fecha) VALUES(@monto, @fecha)");
 
                 var cadenaComando = sb.ToString();
                 var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@tipov", finalizarAlquilerDiario.TipoVehiculoId);
-                comando.Parameters.AddWithValue("@alqui", finalizarAlquilerDiario.AlquilerEnElDiaId);
-                comando.Parameters.AddWithValue("@hrsalida", finalizarAlquilerDiario.HoraSalida);
-                comando.Parameters.AddWithValue("@hrtotal", finalizarAlquilerDiario.TotalHoras);
-                comando.Parameters.AddWithValue("@tipot", finalizarAlquilerDiario.Tarifa);
-                comando.Parameters.AddWithValue("@costo", finalizarAlquilerDiario.Costo);
-                comando.Parameters.AddWithValue("@importe", finalizarAlquilerDiario.ImporteAPagar);
-                comando.Parameters.AddWithValue("@abonado", finalizarAlquilerDiario.Abonado);
+                comando.Parameters.AddWithValue("@monto", recaudacion.Monto);
+                comando.Parameters.AddWithValue("@fecha", recaudacion.Fecha);
 
                 registrosAfectados = comando.ExecuteNonQuery();
                 if (registrosAfectados == 0)
@@ -111,12 +67,12 @@ namespace Parking2022.Datos.Repositorios
                 {
                     cadenaComando = "SELECT @@IDENTITY";
                     comando = new SqlCommand(cadenaComando, cn);
-                    finalizarAlquilerDiario.FinAlquilerDiaId = (int)(decimal)comando.ExecuteScalar();
+                    recaudacion.RecaudacionId = (int)(decimal)comando.ExecuteScalar();
 
-                    cadenaComando = "SELECT RowVersion FROM FinalizarAlquileresDiario WHERE FinAlquilerDiaId=@Id";
+                    cadenaComando = "SELECT RowVersion FROM RecaudacionDiaria WHERE RecaudacionId=@Id";
                     comando = new SqlCommand(cadenaComando, cn);
-                    comando.Parameters.AddWithValue("@id", finalizarAlquilerDiario.FinAlquilerDiaId);
-                    finalizarAlquilerDiario.RowVersion = (byte[])comando.ExecuteScalar();
+                    comando.Parameters.AddWithValue("@id", recaudacion.RecaudacionId);
+                    recaudacion.RowVersion = (byte[])comando.ExecuteScalar();
                 }
 
                 return registrosAfectados;
@@ -124,21 +80,6 @@ namespace Parking2022.Datos.Repositorios
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-
-        public bool EstaRelacionado(FinalizarAlquilerDiario finalizarAlquilerDiario)
-        {
-            try
-            {
-                var cadenaComando = "SELECT COUNT(*) FROM FinalizarAlquileresDiarios WHERE FinAlquilerDiaId=@id";
-                var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@id", finalizarAlquilerDiario.FinAlquilerDiaId);
-                return (int)comando.ExecuteScalar() > 0;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
             }
         }
     }

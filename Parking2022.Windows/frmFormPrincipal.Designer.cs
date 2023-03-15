@@ -39,7 +39,11 @@ namespace Parking2022.Windows
             this.IconAlquileresAsociados = new FontAwesome.Sharp.IconMenuItem();
             this.IconClientes = new FontAwesome.Sharp.IconMenuItem();
             this.IconCtasCtes = new FontAwesome.Sharp.IconMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblRecaudado = new System.Windows.Forms.Label();
             this.BarraMenuPrincipalStrip.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContenedorPanel
@@ -123,7 +127,7 @@ namespace Parking2022.Windows
             // 
             // IconAlquileresDiarios
             // 
-            this.IconAlquileresDiarios.BackColor = System.Drawing.Color.LimeGreen;
+            this.IconAlquileresDiarios.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.IconAlquileresDiarios.CheckOnClick = true;
             this.IconAlquileresDiarios.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IconAlquileresDiarios.IconChar = FontAwesome.Sharp.IconChar.CalendarDay;
@@ -139,7 +143,7 @@ namespace Parking2022.Windows
             // 
             // IconAlquileresAsociados
             // 
-            this.IconAlquileresAsociados.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.IconAlquileresAsociados.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.IconAlquileresAsociados.CheckOnClick = true;
             this.IconAlquileresAsociados.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IconAlquileresAsociados.IconChar = FontAwesome.Sharp.IconChar.CalendarAlt;
@@ -156,7 +160,7 @@ namespace Parking2022.Windows
             // 
             // IconClientes
             // 
-            this.IconClientes.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.IconClientes.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.IconClientes.CheckOnClick = true;
             this.IconClientes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IconClientes.IconChar = FontAwesome.Sharp.IconChar.Restroom;
@@ -173,7 +177,7 @@ namespace Parking2022.Windows
             // 
             // IconCtasCtes
             // 
-            this.IconCtasCtes.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.IconCtasCtes.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.IconCtasCtes.CheckOnClick = true;
             this.IconCtasCtes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IconCtasCtes.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
@@ -187,11 +191,44 @@ namespace Parking2022.Windows
             this.IconCtasCtes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.IconCtasCtes.Click += new System.EventHandler(this.IconCtasCtes_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.groupBox1.Controls.Add(this.lblRecaudado);
+            this.groupBox1.Controls.Add(this.lblFecha);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Location = new System.Drawing.Point(1340, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 100);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Recaudación Diaria";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Location = new System.Drawing.Point(107, 34);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(59, 20);
+            this.lblFecha.TabIndex = 0;
+            this.lblFecha.Text = "_____";
+            // 
+            // lblRecaudado
+            // 
+            this.lblRecaudado.AutoSize = true;
+            this.lblRecaudado.Location = new System.Drawing.Point(107, 65);
+            this.lblRecaudado.Name = "lblRecaudado";
+            this.lblRecaudado.Size = new System.Drawing.Size(59, 20);
+            this.lblRecaudado.TabIndex = 1;
+            this.lblRecaudado.Text = "_____";
+            // 
             // frmFormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1622, 753);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ContenedorPanel);
             this.Controls.Add(this.BarraMenuPrincipalStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -201,6 +238,8 @@ namespace Parking2022.Windows
             this.Load += new System.EventHandler(this.frmFormPrincipal_Load);
             this.BarraMenuPrincipalStrip.ResumeLayout(false);
             this.BarraMenuPrincipalStrip.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -216,6 +255,9 @@ namespace Parking2022.Windows
         private FontAwesome.Sharp.IconMenuItem IconTipoVehiculo;
         private FontAwesome.Sharp.IconMenuItem iconTipoSector;
         private FontAwesome.Sharp.IconMenuItem IconAlquileresDiarios;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblRecaudado;
+        private System.Windows.Forms.Label lblFecha;
     }
 }
 

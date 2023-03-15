@@ -11,5 +11,6 @@ namespace Parking2022.Entidades.Entidades
         public int RecaudacionId { get; set; }
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }

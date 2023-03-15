@@ -30,6 +30,8 @@ namespace Parking2022.Windows
         private TipoDeVehiculo tipoDeVehiculo;
         private ServicioTarifas servicioImporteTarifa;
         private ServicioNrosSectores servicioNrosSectores;
+        private Recaudacion recaudacion;
+        private ServicioFinalizarAlquileres servicioFinalizarAlquileres;
 
         private void frmFinalizarAlquiler_Load(object sender, EventArgs e)
         {
@@ -193,23 +195,14 @@ namespace Parking2022.Windows
         private void GuardarIconButton_Click_1(object sender, EventArgs e)
         {
             if (ValidarDatosFinalizacion())
-            {
-                //LblTituloPago.Enabled = true;
-                //LblTituloPago.BackColor= Color.Blue;
-            
+            { 
                 txtImporte.Enabled = true;
-            btnEfectivo.Enabled = true;
-            //txtDineroRecibido.Enabled = true;
-            //txtDineroRecibido.Focus();
-            txtImporte.Text = cbxImporteAPagar.Text;
+                btnEfectivo.Enabled = true;
+
+                txtImporte.Text = cbxImporteAPagar.Text;
+                picCuadroTarifario.Visible = false;
 
 
-                //HelperGrid.BorrarFila(dgvDatos, r);
-                //int ID = alquilerDiario.NroId;
-                //bool ocupado = false;
-                //servicioNrosSectores.ActualizarEstado(ID, ocupado);
-
-                //HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
 
             }
 
@@ -276,6 +269,8 @@ namespace Parking2022.Windows
                 double vuelto;
                 double importeAPagar = Convert.ToDouble(txtImporte.Text);
                 double dineroRecibido = Convert.ToDouble(txtDineroRecibido.Text);
+                //DateTime Fecha= DateTime.Now;
+
 
                 if (dineroRecibido <= 0)
                 {
@@ -306,7 +301,11 @@ namespace Parking2022.Windows
                     //ActualizarEstadoAlRetirar();
 
                     //servicio.Retirar(alquilerDiario);
-                    HelperMessage.Mensaje(TipoMensaje.OK, "Alquiler finalizado con éxito!", "Mensaje");
+                    HelperMessage.Mensaje(TipoMensaje.OK, "Pago finalizado con éxito!", "Mensaje");
+
+                    
+                    AgregarRecaudacion();
+
                     Close();
             
                 }
@@ -325,18 +324,24 @@ namespace Parking2022.Windows
         {
             errorProvider1.Clear();
             bool valido = true;
+            
             if (string.IsNullOrEmpty(txtDineroRecibido.Text.Trim()))
             {
                 valido = false;
                 errorProvider1.SetError(txtDineroRecibido, "El monto del dinero recibido es requerido!");
             }
-            if (Convert.ToDouble(txtDineroRecibido.Text) < 0)
+            if (!decimal.TryParse(txtDineroRecibido.Text, out decimal precioResult))
             {
                 valido = false;
-                errorProvider1.SetError(txtDineroRecibido, "El importe debe ser mayor que 0.");
+                errorProvider1.SetError(txtDineroRecibido, "Monto mal ingresado");
             }
-
+            else if (precioResult <= 0)
+            {
+                valido = false;
+                errorProvider1.SetError(txtDineroRecibido, "El monto no debe ser menor que 0");
+            }
             return valido;
+            
         }
 
         private void IconEfectivo_Click(object sender, EventArgs e)
@@ -356,6 +361,26 @@ namespace Parking2022.Windows
         private void label13_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void AgregarRecaudacion()
+        {
+            ServicioFinalizarAlquileres servicioFin = new ServicioFinalizarAlquileres();
+            Recaudacion recaudacion = new Recaudacion();
+            recaudacion.Monto = Convert.ToDecimal(txtImporte.Text);
+            recaudacion.Fecha = DateTime.Now.Date;
+            servicioFin.Agregar(recaudacion);
+
+        }
+
+        private Recaudacion GetRecaudacion()
+        {
+            return recaudacion;
         }
     }
 }
