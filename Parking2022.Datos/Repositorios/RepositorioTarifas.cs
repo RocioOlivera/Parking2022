@@ -17,35 +17,49 @@ namespace Parking2022.Datos.Repositorios
             this.cn = cn;
         }
 
-        public List<TipoDeTarifa> GetLista(TipoDeVehiculo tipoDeVehiculo=null)
+        public List<Tarifa> GetLista(TipoDeVehiculo tipoDeVehiculo=null, TiempoTarifa tiempoTarifa=null)
         {
-            List<TipoDeTarifa> lista = new List<TipoDeTarifa>();
+            List<Tarifa> lista = new List<Tarifa>();
             try
             {
-                StringBuilder sb = 
-                    new StringBuilder(
-                    "SELECT TipoTarifaId, TipoVehiculoId, Hora, MediaEstadia, Estadia, Noche, RowVersion FROM Tarifas ");
-                if (tipoDeVehiculo!=null)
+                StringBuilder sb =
+                    new StringBuilder("SELECT TarifaId, Descripcion, TipoVehiculoId, TiempoTarifaId, Importe, RowVersion FROM Tarifas");
+                if (tipoDeVehiculo != null && tiempoTarifa != null)
                 {
-                    sb.Append("WHERE TipoVehiculoId=@id ORDER BY TipoVehiculoId");
+                    sb.Append(" WHERE (TipoVehiculoId=@Vid) and (TiempoTarifaId=@Tid) ORDER BY Importe");
                 }
                 else
                 {
-                    sb.Append(" ORDER BY TipoVehiculoId");
+                    sb.Append(" ORDER BY Importe");
                 }
 
-                var cadenaComando = sb.ToString();
+                //if (tiempoTarifa != null)
+                //{
+                //    sb.Append("WHERE TiempoTarifaId=@Tid) ORDER BY Importe");
+                //}
+                //else
+                //{
+                //    sb.Append(" ORDER BY Importe");
+                //}
+
+                var cadenaComando= sb.ToString();
                 var comando = new SqlCommand(cadenaComando, cn);
-                if (tipoDeVehiculo!=null)
+
+                if (tipoDeVehiculo != null)
                 {
-                    comando.Parameters.AddWithValue("@id", tipoDeVehiculo.TipoVehiculoId);
+                    comando.Parameters.AddWithValue("@Vid", tipoDeVehiculo.TipoVehiculoId);
                 }
+                if (tiempoTarifa != null)
+                {
+                    comando.Parameters.AddWithValue("@Tid", tiempoTarifa.TiempoTarifaId);
+                }
+
                 using (var reader = comando.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        TipoDeTarifa tipoDeTarifa = ConstruirTipoDeTarifa(reader);
-                        lista.Add(tipoDeTarifa);
+                        Tarifa tarifa = ConstruirTarifa(reader);
+                        lista.Add(tarifa);
                     }
                 }
                 return lista;
@@ -56,33 +70,31 @@ namespace Parking2022.Datos.Repositorios
             }
         }
 
-        private TipoDeTarifa ConstruirTipoDeTarifa (SqlDataReader reader)
+        private Tarifa ConstruirTarifa (SqlDataReader reader)
         {
-            return new TipoDeTarifa()
+            return new Tarifa()
             {
-                TipoTarifaId = reader.GetInt32(0),
-                TipoVehiculoId = reader.GetInt32(1),
-                Hora = reader.GetDecimal(2),
-                MediaEstadia = reader.GetInt32(3),
-                Estadia = reader.GetInt32(4),
-                Noche = reader.GetDecimal(5),
-                RowVersion = (byte[])reader[6]
+                TarifaId = reader.GetInt32(0),
+                Descripcion = reader.GetString(1),
+                TipoVehiculoId = reader.GetInt32(2),
+                TiempoTarifaId = reader.GetInt32(3),
+                Importe = reader.GetDecimal(4),
+                RowVersion = (byte[])reader[5]
             };
         }
 
-        public int Agregar(TipoDeTarifa tipoDeTarifa)
+        public int Agregar(Tarifa tarifa)
         {
             int registrosAfectados = 0;
             try
             {
-                var cadenaComando = "INSERT INTO Tarifas (TipoVehiculoId, Hora, MediaEstadia, Estadia, Noche)" +
-                                    " VALUES (@vehi, @hr, @media, @est, @noc)";
+                var cadenaComando = "INSERT INTO Tarifas (Descripcion, TipoVehiculoId, TiempoTarifaId, Importe) VALUES (@desc, @vehi, @tiem, @imp)" ;
+
                 var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@vehi", tipoDeTarifa.TipoVehiculoId);
-                comando.Parameters.AddWithValue("@hr", tipoDeTarifa.Hora);
-                comando.Parameters.AddWithValue("@media", tipoDeTarifa.MediaEstadia);
-                comando.Parameters.AddWithValue("@est", tipoDeTarifa.Estadia);
-                comando.Parameters.AddWithValue("@noc", tipoDeTarifa.Noche);
+                comando.Parameters.AddWithValue("@desc", tarifa.Descripcion);
+                comando.Parameters.AddWithValue("@vehi", tarifa.TipoVehiculoId);
+                comando.Parameters.AddWithValue("@tiem", tarifa.TiempoTarifaId);
+                comando.Parameters.AddWithValue("@imp", tarifa.Importe);
                 registrosAfectados = comando.ExecuteNonQuery();
                 if (registrosAfectados == 0)
                 { 
@@ -92,12 +104,12 @@ namespace Parking2022.Datos.Repositorios
                 {
                     cadenaComando = "SELECT @@IDENTITY";
                     comando = new SqlCommand(cadenaComando, cn);
-                    tipoDeTarifa.TipoTarifaId = (int)(decimal)comando.ExecuteScalar();
+                    tarifa.TarifaId = (int)(decimal)comando.ExecuteScalar();
 
-                    cadenaComando = "SELECT RowVersion FROM Tarifas WHERE TipoTarifaId=@id";
+                    cadenaComando = "SELECT RowVersion FROM Tarifas WHERE TarifaId=@id";
                     comando = new SqlCommand(cadenaComando, cn);
-                    comando.Parameters.AddWithValue("@id", tipoDeTarifa.TipoTarifaId);
-                    tipoDeTarifa.RowVersion = (byte[])comando.ExecuteScalar();
+                    comando.Parameters.AddWithValue("@id", tarifa.TarifaId);
+                    tarifa.RowVersion = (byte[])comando.ExecuteScalar();
                 }
                 return registrosAfectados;
 
@@ -108,13 +120,13 @@ namespace Parking2022.Datos.Repositorios
             }
         }
 
-        public bool EstaRelacionado(TipoDeTarifa tipoDeTarifa)
+        public bool EstaRelacionado(Tarifa tarifa)
         {
             try
             {
-                var cadenaComando = "SELECT COUNT(*) FROM AlquileresConAbono WHERE TipoTarifaId=@id";
+                var cadenaComando = "SELECT COUNT(*) FROM AlquileresEnElDia WHERE TarifaId=@id";
                 var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@id", tipoDeTarifa.TipoTarifaId);
+                comando.Parameters.AddWithValue("@id", tarifa.TarifaId);
                 return (int)comando.ExecuteScalar() > 0;
             }
             catch (Exception e)
@@ -123,15 +135,15 @@ namespace Parking2022.Datos.Repositorios
             }
         }
 
-        public int Borrar(TipoDeTarifa tipoDeTarifa)
+        public int Borrar(Tarifa tarifa)
         {
             int registrosAfectados = 0;
             try
             {
-                var cadenaComando = "DELETE FROM Tarifas WHERE TipoTarifaId=@id AND RowVersion=@r";
+                var cadenaComando = "DELETE FROM Tarifas WHERE TarifaId=@id AND RowVersion=@r";
                 var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@id", tipoDeTarifa.TipoTarifaId);
-                comando.Parameters.AddWithValue("@r", tipoDeTarifa.RowVersion);
+                comando.Parameters.AddWithValue("@id", tarifa.TarifaId);
+                comando.Parameters.AddWithValue("@r", tarifa.RowVersion);
                 registrosAfectados = comando.ExecuteNonQuery();
 
                 return registrosAfectados;
@@ -142,25 +154,22 @@ namespace Parking2022.Datos.Repositorios
             }
         }
 
-        public int Editar(TipoDeTarifa tipoDeTarifa)
+        public int Editar(Tarifa tarifa)
         {
             int registrosAfectados = 0;
             try
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("UPDATE Tarifas SET TipoVehiculoId=@vehi, Hora=@hr, MediaEstadia=@media, Estadia=@est, Noche=@noc WHERE TipoTarifaId=@id");
+                sb.Append("UPDATE Tarifas SET Descripcion=@desc, TipoVehiculoId=@vehi, TiempoTarifaId=@tiem, Importe=@imp WHERE TarifaId=@id AND RowVersion=@r");
 
                 var cadenaComando = sb.ToString();
                 var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@vehi", tipoDeTarifa.TipoVehiculoId);
-                comando.Parameters.AddWithValue("@hr", tipoDeTarifa.Hora);
-                comando.Parameters.AddWithValue("@media", tipoDeTarifa.MediaEstadia);
-                comando.Parameters.AddWithValue("@est", tipoDeTarifa.Estadia);
-                comando.Parameters.AddWithValue("@noc", tipoDeTarifa.Noche);
-                //comando.Parameters.AddWithValue("@sem", tipoDeTarifa.Semana);
-                //comando.Parameters.AddWithValue("@quin", tipoDeTarifa.Quincena);
-                //comando.Parameters.AddWithValue("@mes", tipoDeTarifa.Mes);
-                comando.Parameters.AddWithValue(@"id", tipoDeTarifa.TipoTarifaId);
+                comando.Parameters.AddWithValue("@desc", tarifa.Descripcion);
+                comando.Parameters.AddWithValue("@vehi", tarifa.TipoVehiculoId);
+                comando.Parameters.AddWithValue("@tiem", tarifa.TiempoTarifaId);
+                comando.Parameters.AddWithValue("@imp", tarifa.Importe);
+                comando.Parameters.AddWithValue("@r", tarifa.RowVersion);
+                comando.Parameters.AddWithValue(@"id", tarifa.TarifaId);
                 registrosAfectados = comando.ExecuteNonQuery();
                 if (registrosAfectados == 0)
                 {
@@ -168,10 +177,10 @@ namespace Parking2022.Datos.Repositorios
                 }
                 else
                 {
-                    cadenaComando = "SELECT RowVersion FROM Tarifas WHERE TipoTarifaId=@id";
+                    cadenaComando = "SELECT RowVersion FROM Tarifas WHERE TarifaId=@id";
                     comando = new SqlCommand(cadenaComando, cn);
-                    comando.Parameters.AddWithValue("@id", tipoDeTarifa.TipoTarifaId);
-                    tipoDeTarifa.RowVersion = (byte[])comando.ExecuteScalar();
+                    comando.Parameters.AddWithValue("@id", tarifa.TarifaId);
+                    tarifa.RowVersion = (byte[])comando.ExecuteScalar();
                 }
 
                 return registrosAfectados;
@@ -182,13 +191,13 @@ namespace Parking2022.Datos.Repositorios
             }
         }
 
-        public TipoDeTarifa GetTipoDeTarifaPorId(int id)
+        public Tarifa GetTarifaPorId(int id)
         {
             try
             {
-                TipoDeTarifa tipoDeTarifa = null;
-                var cadenaComando = "SELECT TipoTarifaId, TipoVehiculoId, Hora, MediaEstadia, Estadia, Noche, RowVersion " +
-                                    "FROM Tarifas WHERE TipoTarifaId=@id";
+                Tarifa tarifa = null;
+                var cadenaComando = "SELECT TarifaId, TipoVehiculoId, TiempoTarifaId, Importe, RowVersion " +
+                                    "FROM Tarifas WHERE TarifaId=@id";
                 var comando = new SqlCommand(cadenaComando, cn);
                 comando.Parameters.AddWithValue("@id", id);
                 using (var reader = comando.ExecuteReader())
@@ -196,11 +205,11 @@ namespace Parking2022.Datos.Repositorios
                     if (reader.HasRows)
                     {
                         reader.Read();
-                        tipoDeTarifa = ConstruirTipoDeTarifa(reader);
+                        tarifa = ConstruirTarifa(reader);
                     }
                 }
 
-                return tipoDeTarifa;
+                return tarifa;
             }
             catch (Exception e)
             {
@@ -209,30 +218,30 @@ namespace Parking2022.Datos.Repositorios
             }
         }
 
-        public bool Existe(TipoDeTarifa tipoDeTarifa)
-        {
-            try
-            {
-                var cadenaComando = "SELECT COUNT(*) FROM Tarifas WHERE TipoVehiculoId=@tipo";
-                if (tipoDeTarifa.TipoTarifaId != 0)
-                {
-                    cadenaComando += " AND TipoTarifaId<>@tipoTarifaId";
-                }
-                var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@tipo", tipoDeTarifa.Hora);
+        //public bool Existe(Tarifa tarifa)
+        //{
+        //    try
+        //    {
+        //        var cadenaComando = "SELECT COUNT(*) FROM Tarifas WHERE TipoVehiculoId=@vehi AND TiempoTarifaId=@tiem";
+        //        if (tarifa.TarifaId != 0)
+        //        {
+        //            cadenaComando += " AND TarifaId<>@TarifaId";
+        //        }
+        //        var comando = new SqlCommand(cadenaComando, cn);
+        //        comando.Parameters.AddWithValue("@imp", tarifa.Importe);
 
-                if (tipoDeTarifa.TipoTarifaId != 0)
-                {
-                    comando.Parameters.AddWithValue("@tipoTarifaId", tipoDeTarifa.TipoTarifaId);
-                }
+        //        if (tarifa.TarifaId != 0)
+        //        {
+        //            comando.Parameters.AddWithValue("@tarifaId", tarifa.TarifaId);
+        //        }
 
-                return (int)comando.ExecuteScalar() > 0;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+        //        return (int)comando.ExecuteScalar() > 0;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception(e.Message);
+        //    }
+        //}
 
         //public TipoDeTarifa GetTipoDeTarifaPorId(int id)
         //{

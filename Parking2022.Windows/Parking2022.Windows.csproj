@@ -89,17 +89,23 @@
     <Compile Include="frmDetalleCtaCte.Designer.cs">
       <DependentUpon>frmDetalleCtaCte.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFinalizarAlquiler.cs">
+    <Compile Include="frmFinalizarAlquilerAE.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFinalizarAlquiler.Designer.cs">
-      <DependentUpon>frmFinalizarAlquiler.cs</DependentUpon>
+    <Compile Include="frmFinalizarAlquilerAE.Designer.cs">
+      <DependentUpon>frmFinalizarAlquilerAE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFormPrincipal.Designer.cs">
       <DependentUpon>frmFormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagosAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPagosAE.Designer.cs">
+      <DependentUpon>frmPagosAE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTarifaAE.cs">
       <SubType>Form</SubType>
@@ -163,11 +169,14 @@
     <EmbeddedResource Include="frmDetalleCtaCte.resx">
       <DependentUpon>frmDetalleCtaCte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFinalizarAlquiler.resx">
-      <DependentUpon>frmFinalizarAlquiler.cs</DependentUpon>
+    <EmbeddedResource Include="frmFinalizarAlquilerAE.resx">
+      <DependentUpon>frmFinalizarAlquilerAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFormPrincipal.resx">
       <DependentUpon>frmFormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPagosAE.resx">
+      <DependentUpon>frmPagosAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTarifaAE.resx">
       <DependentUpon>frmTarifaAE.cs</DependentUpon>

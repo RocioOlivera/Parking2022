@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,8 +46,11 @@
     <Compile Include="Entidades\AlquilerDiario.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\CtaCte.cs" />
+    <Compile Include="Entidades\FinalizarAlquilerDiario.cs" />
     <Compile Include="Entidades\NrosSectores.cs" />
-    <Compile Include="Entidades\TipoDeTarifa.cs" />
+    <Compile Include="Entidades\Recaudacion.cs" />
+    <Compile Include="Entidades\TiempoTarifa.cs" />
+    <Compile Include="Entidades\Tarifa.cs" />
     <Compile Include="Entidades\TipoDeVehiculo.cs" />
     <Compile Include="Entidades\AlquilerConAbono.cs" />
     <Compile Include="Entidades\TipoDeSector.cs" />

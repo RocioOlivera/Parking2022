@@ -12,6 +12,7 @@ namespace Parking2022.Servicios.Servicios
     public class ServicioTarifas
     {
         private RepositorioTarifas repositorio;
+        private RepositorioTiempoTarifas repositorioTiempoTarifas;
         private RepositorioTiposVehiculos repositorioTiposVehiculos;
 
         public ServicioTarifas()
@@ -19,19 +20,21 @@ namespace Parking2022.Servicios.Servicios
 
         }
 
-        public List<TipoDeTarifa> GetLista()
+        public List<Tarifa> GetLista(TipoDeVehiculo tipoDeVehiculo=null, TiempoTarifa tiempoTarifa = null)
         {
             try
             {
-                List<TipoDeTarifa> lista=null;
+                List<Tarifa> lista;
                 using (var cn = ConexionBd.GetInstancia().AbrirConexion())
                 {
                     repositorio = new RepositorioTarifas(cn);
                     repositorioTiposVehiculos = new RepositorioTiposVehiculos(cn);
-                    lista = repositorio.GetLista();
-                    foreach (var tipoDeTarifa in lista)
+                    repositorioTiempoTarifas = new RepositorioTiempoTarifas(cn);
+                    lista = repositorio.GetLista(tipoDeVehiculo,tiempoTarifa);
+                    foreach (var tarifa in lista)
                     {
-                        tipoDeTarifa.TipoDeVehiculo = repositorioTiposVehiculos.GetTipoDeVehiculoPorId(tipoDeTarifa.TipoVehiculoId);
+                        tarifa.TipoDeVehiculo = repositorioTiposVehiculos.GetTipoDeVehiculoPorId(tarifa.TipoVehiculoId);
+                        tarifa.TiempoTarifa = repositorioTiempoTarifas.GetTiempoTarifaPorId(tarifa.TiempoTarifaId);
                     }
                 }
                 return lista;
@@ -42,7 +45,7 @@ namespace Parking2022.Servicios.Servicios
             }
         }
 
-        public int Agregar(TipoDeTarifa tipoDeTarifa)
+        public int Agregar(Tarifa tarifa)
         {
             try
             {
@@ -50,7 +53,7 @@ namespace Parking2022.Servicios.Servicios
                 using (var cn = ConexionBd.GetInstancia().AbrirConexion())
                 {
                     repositorio = new RepositorioTarifas(cn);
-                    registros = repositorio.Agregar(tipoDeTarifa);
+                    registros = repositorio.Agregar(tarifa);
                 }
                 return registros;
             }
@@ -60,27 +63,27 @@ namespace Parking2022.Servicios.Servicios
             }
         }
 
-        public bool Existe(TipoDeTarifa tipoDeTarifa)
-        {
-            try
-            {
-                bool existe = true;
-                using (var cn = ConexionBd.GetInstancia().AbrirConexion())
-                {
-                    repositorio = new RepositorioTarifas(cn);
+        //public bool Existe(Tarifa tarifa)
+        //{
+        //    try
+        //    {
+        //        bool existe = true;
+        //        using (var cn = ConexionBd.GetInstancia().AbrirConexion())
+        //        {
+        //            repositorio = new RepositorioTarifas(cn);
 
-                    existe = repositorio.Existe(tipoDeTarifa);
-                }
+        //            existe = repositorio.Existe(tarifa);
+        //        }
 
-                return existe;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+        //        return existe;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception(e.Message);
+        //    }
+        //}
 
-        public int Borrar(TipoDeTarifa tipoDeTarifa)
+        public int Borrar(Tarifa tarifa)
         {
             try
             {
@@ -89,7 +92,7 @@ namespace Parking2022.Servicios.Servicios
                 {
                     repositorio = new RepositorioTarifas(cn);
 
-                    registros = repositorio.Borrar(tipoDeTarifa);
+                    registros = repositorio.Borrar(tarifa);
                 }
                 return registros;
             }
@@ -99,7 +102,7 @@ namespace Parking2022.Servicios.Servicios
             }
         }
 
-        public int Editar(TipoDeTarifa tipoDeTarifa)
+        public int Editar(Tarifa tarifa)
         {
             try
             {
@@ -108,7 +111,7 @@ namespace Parking2022.Servicios.Servicios
                 {
                     repositorio = new RepositorioTarifas(cn);
 
-                    registros = repositorio.Editar(tipoDeTarifa);
+                    registros = repositorio.Editar(tarifa);
 
                 }
                 return registros;
@@ -119,7 +122,7 @@ namespace Parking2022.Servicios.Servicios
             }
         }
 
-        public bool EstaRelacionado(TipoDeTarifa tipoDeTarifa)
+        public bool EstaRelacionado(Tarifa tarifa)
         {
             try
             {
@@ -127,7 +130,7 @@ namespace Parking2022.Servicios.Servicios
                 using (var cn = ConexionBd.GetInstancia().AbrirConexion())
                 {
                     repositorio = new RepositorioTarifas(cn);
-                    estaRelacionado = repositorio.EstaRelacionado(tipoDeTarifa);
+                    estaRelacionado = repositorio.EstaRelacionado(tarifa);
                 }
 
                 return estaRelacionado;
@@ -157,18 +160,18 @@ namespace Parking2022.Servicios.Servicios
         //        throw new Exception(e.Message);
         //    }
         //}
-        public TipoDeTarifa GetTipoDeTarifaPorId(int id)
+        public Tarifa GetTarifaPorId(int id)
         {
             try
             {
-                TipoDeTarifa tipoDeTarifa = null;
+                Tarifa tarifa = null;
                 using (var cn = ConexionBd.GetInstancia().AbrirConexion())
                 {
                     repositorio = new RepositorioTarifas(cn);
-                    tipoDeTarifa = repositorio.GetTipoDeTarifaPorId(id);
+                    tarifa = repositorio.GetTarifaPorId(id);
                 }
 
-                return tipoDeTarifa;
+                return tarifa;
             }
             catch (Exception e)
             {

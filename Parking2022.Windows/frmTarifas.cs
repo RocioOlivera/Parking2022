@@ -21,7 +21,7 @@ namespace Parking2022.Windows
         }
 
         private ServicioTarifas servicio;
-        private List<TipoDeTarifa> lista;
+        private List<Tarifa> lista;
         private void frmTarifas_Load(object sender, EventArgs e)
         {
             servicio = new ServicioTarifas();
@@ -62,17 +62,17 @@ namespace Parking2022.Windows
 
             try
             {
-                TipoDeTarifa tipoDeTarifa = frm.GetTipoTarifa();
-                if (servicio.Existe(tipoDeTarifa))
-                { 
-                    HelperMessage.Mensaje(TipoMensaje.Error, "Tipo de tarifa existente!!!", "ERROR");
-                }
-                else
+                Tarifa tarifa = frm.GetTarifa();
+                //if (servicio.Existe(tarifa))
+                //{ 
+                //    HelperMessage.Mensaje(TipoMensaje.Error, "Tarifa existente!!!", "ERROR");
+                //}
+                //else
                 {
-                    int registros = servicio.Agregar(tipoDeTarifa);
-                    HelperMessage.Mensaje(TipoMensaje.OK, "Tipo de Tarifa agregado!!!", "Mensaje");
+                    int registros = servicio.Agregar(tarifa);
+                    HelperMessage.Mensaje(TipoMensaje.OK, "Tarifa agregada!!!", "Mensaje");
                     var r = HelperGrid.ConstruirFila(dgvDatos);
-                    HelperGrid.SetearFila(r, tipoDeTarifa);
+                    HelperGrid.SetearFila(r, tarifa);
                     HelperGrid.AgregarFila(dgvDatos, r);
                 }
             }
@@ -126,9 +126,9 @@ namespace Parking2022.Windows
             //    HelperMessage.Mensaje(TipoMensaje.Error, exception.Message, "Error");
             //}
             var r = dgvDatos.SelectedRows[0];
-            TipoDeTarifa tipoDeTarifa = (TipoDeTarifa)r.Tag;
+            Tarifa tarifa = (Tarifa)r.Tag;
             frmTarifaAE frm = new frmTarifaAE() { Text = "Editar Tarifa" };
-            frm.SetTipoTarifa(tipoDeTarifa);
+            frm.SetTarifa(tarifa);
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel)
             {
@@ -137,17 +137,17 @@ namespace Parking2022.Windows
 
             try
             {
-                tipoDeTarifa = frm.GetTipoTarifa();
-                if (servicio.Existe(tipoDeTarifa))
+                tarifa = frm.GetTarifa();
+                //if (servicio.Existe(tarifa))
+                //{
+                //    HelperMessage.Mensaje(TipoMensaje.Error, "Tarifa existente!!!", "ERROR");
+                //}
+                //else
                 {
-                    HelperMessage.Mensaje(TipoMensaje.Error, "Tipo de Tarifa existente!!!", "ERROR");
-                }
-                else
-                {
-                    int registros = servicio.Editar(tipoDeTarifa);
+                    int registros = servicio.Editar(tarifa);
                     HelperMessage.Mensaje(TipoMensaje.OK, "Tarifa editada!!!", "Mensaje");
                     r = HelperGrid.ConstruirFila(dgvDatos);
-                    HelperGrid.SetearFila(r, tipoDeTarifa);
+                    HelperGrid.SetearFila(r, tarifa);
                     HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
                 }
             }
@@ -165,7 +165,7 @@ namespace Parking2022.Windows
             }
 
             var r = dgvDatos.SelectedRows[0];
-            TipoDeTarifa tipoDeTarifa = (TipoDeTarifa)r.Tag;
+            Tarifa tarifa = (Tarifa)r.Tag;
             DialogResult dr = HelperMessage.Mensaje("¿Desea borrar la tarifa?", "Confirmar");
             if (dr == DialogResult.No)
             {
@@ -174,13 +174,13 @@ namespace Parking2022.Windows
 
             try
             {
-                if (servicio.EstaRelacionado(tipoDeTarifa))
+                if (servicio.EstaRelacionado(tarifa))
                 {
-                    HelperMessage.Mensaje(TipoMensaje.Error, "Tarifa relacionado!!", "ERROR");
+                    HelperMessage.Mensaje(TipoMensaje.Error, "Tarifa relacionada!", "ERROR");
                 }
                 else
                 {
-                    int registros = servicio.Borrar(tipoDeTarifa);
+                    int registros = servicio.Borrar(tarifa);
                     if (registros == 0)
                     {
                         HelperMessage.Mensaje(TipoMensaje.Warning, "No se editaron registros", "Advertencia");
@@ -189,7 +189,7 @@ namespace Parking2022.Windows
                     {
                         HelperGrid.BorrarFila(dgvDatos, r);
 
-                        HelperMessage.Mensaje(TipoMensaje.OK, "tarifa borrado", "Mensaje");
+                        HelperMessage.Mensaje(TipoMensaje.OK, "tarifa borrada", "Mensaje");
                     }
                 }
             }

@@ -46,6 +46,32 @@ namespace Parking2022.Servicios.Servicios
             {
                 throw new Exception(e.Message);
             }
+        } 
+        public List<AlquilerDiario> GetListaLugaresDesocupados()
+        {
+            try
+            {
+                List<AlquilerDiario> lista=null;
+                using (var cn = ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    repositorio = new RepositorioAlquileresDiarios(cn);
+                    repoTiposVehiculos = new RepositorioTiposVehiculos(cn);
+                    repoTiposSectores = new RepositorioTiposSectores(cn);
+                    repoNroSectores = new RepositorioNrosSectores(cn);
+                    lista = repositorio.GetLista();
+                    foreach (var alquilerDiario in lista)
+                    {
+                        alquilerDiario.TipoDeVehiculo = repoTiposVehiculos.GetTipoDeVehiculoPorId(alquilerDiario.TipoVehiculoId);
+                        alquilerDiario.TipoDeSector = repoTiposSectores.GetTipoSectorPorId(alquilerDiario.TipoSectorId);
+                        alquilerDiario.NrosSectores = repoNroSectores.GetNroPorId(alquilerDiario.NroId);
+                    }
+                    return lista;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         //public bool Existe(AlquilerDiario alquilerDiario)
         //{
@@ -140,5 +166,45 @@ namespace Parking2022.Servicios.Servicios
                 throw new Exception(e.Message);
             }
         }
+
+        public int Retirar(AlquilerDiario alquilerDiario)
+        {
+            try
+            {
+                int registros = 0;
+                using (var cn = ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    repositorio = new RepositorioAlquileresDiarios(cn);
+
+                    registros = repositorio.Retirar(alquilerDiario);
+
+                }
+                return registros;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int ActualizarPago(int ID, bool pagado)
+        {
+            try
+            {
+                int registrosAfectados = 0;
+                using (var cn = ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    repositorio = new RepositorioAlquileresDiarios(cn);
+                    registrosAfectados = repositorio.ActualizarPago(ID, pagado);
+
+                }
+                return registrosAfectados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
     }
 }

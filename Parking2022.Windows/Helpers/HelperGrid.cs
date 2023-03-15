@@ -43,15 +43,11 @@ namespace Parking2022.Windows.Helpers
 
                     break;
 
-                case TipoDeTarifa tipoDeTarifa:
-                    r.Cells[0].Value = tipoDeTarifa.TipoDeVehiculo.TipoVehiculo;
-                    r.Cells[1].Value = tipoDeTarifa.Hora;
-                    r.Cells[2].Value = tipoDeTarifa.MediaEstadia;
-                    r.Cells[3].Value = tipoDeTarifa.Estadia;
-                    r.Cells[4].Value = tipoDeTarifa.Noche;
-                    //r.Cells[5].Value = tipoDeTarifa.Semana;
-                    //r.Cells[6].Value = tipoDeTarifa.Quincena;
-                    //r.Cells[7].Value = tipoDeTarifa.Mes;
+                case Tarifa tarifa:
+                    //r.Cells[0].Value = tarifa.Descripcion;
+                    r.Cells[0].Value = tarifa.TipoDeVehiculo.TipoVehiculo;
+                    r.Cells[1].Value = tarifa.TiempoTarifa.Descripcion;
+                    r.Cells[2].Value = tarifa.Importe;
 
                     break;
 
@@ -67,10 +63,14 @@ namespace Parking2022.Windows.Helpers
                 case AlquilerDiario alquilerDiario:
                     r.Cells[0].Value = alquilerDiario.TipoDeVehiculo.TipoVehiculo;
                     r.Cells[1].Value = alquilerDiario.Patente;
-                    r.Cells[2].Value = alquilerDiario.TipoDeSector.TipoSectorId;
+                    r.Cells[2].Value = alquilerDiario.TipoDeSector.TipoSector;
                     r.Cells[3].Value = alquilerDiario.NrosSectores.Nro;
                     r.Cells[4].Value = alquilerDiario.FechaIngreso;
-                    r.Cells[5].Value = alquilerDiario.Activo;
+                    r.Cells[5].Value = alquilerDiario.Pago;
+                    //r.Cells[6].Value = alquilerDiario.TiempoTotal;
+                    //r.Cells[7].Value = alquilerDiario.TipoTarifaId;
+                    //r.Cells[8].Value = alquilerDiario.Pagado;
+                    //r.Cells[5].Value = alquilerDiario.Retirado;
 
                     break;
 
@@ -85,14 +85,6 @@ namespace Parking2022.Windows.Helpers
                     r.Cells[2].Value = nrosSectores.Ocupado;
                     break;
 
-                    //case ItemCarrito item:
-                    //    r.Cells[0].Value = item.Descripcion;
-                    //    r.Cells[1].Value = item.Precio;
-                    //    r.Cells[2].Value = item.Cantidad;
-                    //    r.Cells[3].Value = item.Cantidad * item.Precio;
-                    //    break;
-
-                    //}
             }
 
             r.Tag = obj;

@@ -26,6 +26,7 @@ namespace Parking2022.Windows.Helpers
             combo.ValueMember = "TipoVehiculoId";
             combo.SelectedIndex = 0;
         }
+
         public static void CargarDatosComboTipoSector(ref ComboBox combo)
         {
             ServicioTiposDeSectores servicio = new ServicioTiposDeSectores();
@@ -55,6 +56,38 @@ namespace Parking2022.Windows.Helpers
             combo.DataSource = lista;
             combo.DisplayMember = "Nro";
             combo.ValueMember = "NroId";
+            combo.SelectedIndex = 0;
+        }
+
+        public static void CargarDatosComboTipoTarifa(ref ComboBox combo)
+        {
+            ServicioTiempoTarifa servicio = new ServicioTiempoTarifa();
+            var lista = servicio.GetLista();
+            var defaultTiempoTarifa = new TiempoTarifa()
+            {
+                TiempoTarifaId = 0,
+                Descripcion = "Seleccione el tipo de Tarifa"
+            };
+            lista.Insert(0, defaultTiempoTarifa);
+            combo.DataSource = lista;
+            combo.DisplayMember = "Descripcion";
+            combo.ValueMember = "TiempoTarifaId";
+            combo.SelectedIndex = 0;
+        }
+
+        public static void CargarDatosComboCostoTarifa(ref ComboBox combo, TipoDeVehiculo tipoDeVehiculo, TiempoTarifa tiempoTarifa)
+        {
+            ServicioTarifas servicio = new ServicioTarifas();
+            var lista = servicio.GetLista(tipoDeVehiculo, tiempoTarifa);
+            var defaultTarifa = new Tarifa()
+            {
+                TarifaId = 0,
+                Importe = 0
+            };
+           // lista.Insert(0, defaultTarifa);
+            combo.DataSource = lista;
+            combo.DisplayMember = "Importe";
+            combo.ValueMember = "TarifaId";
             combo.SelectedIndex = 0;
         }
     }

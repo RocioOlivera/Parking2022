@@ -42,6 +42,7 @@ namespace Parking2022.Windows
             // GuardarIconButton
             // 
             this.GuardarIconButton.BackColor = System.Drawing.Color.DodgerBlue;
+            this.GuardarIconButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.GuardarIconButton.ForeColor = System.Drawing.Color.White;
             this.GuardarIconButton.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.GuardarIconButton.IconColor = System.Drawing.Color.White;
@@ -59,6 +60,7 @@ namespace Parking2022.Windows
             // CancelarIconButton
             // 
             this.CancelarIconButton.BackColor = System.Drawing.Color.Red;
+            this.CancelarIconButton.DialogResult = System.Windows.Forms.DialogResult.No;
             this.CancelarIconButton.ForeColor = System.Drawing.Color.White;
             this.CancelarIconButton.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.CancelarIconButton.IconColor = System.Drawing.Color.White;

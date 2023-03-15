@@ -20,29 +20,29 @@ namespace Parking2022.Windows
             InitializeComponent();
         }
 
-        private TipoDeTarifa tipoDeTarifa;
-        private ServicioTiposDeVehiculos servicio;
+        private Tarifa tarifa;
+        private ServicioTiposDeVehiculos servicioTipoVehiculo;
+        private ServicioTiempoTarifa servicioTiempoTarifa;
 
-        public TipoDeTarifa GetTipoTarifa()
+        public Tarifa GetTarifa()
         {
-            return tipoDeTarifa;
+            return tarifa;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            servicio = new ServicioTiposDeVehiculos();
+            servicioTipoVehiculo = new ServicioTiposDeVehiculos();
+            servicioTiempoTarifa = new ServicioTiempoTarifa();
             HelperCombos.CargarDatosComboTipoVehiculo(ref cbxTipoVehiculo);
-            if (tipoDeTarifa != null)
+            HelperCombos.CargarDatosComboTipoTarifa(ref cbxTiempoTarifa);
+            if (tarifa != null)
             {
-                cbxTipoVehiculo.SelectedValue = tipoDeTarifa.TipoVehiculoId;
-                txtHora.Text = tipoDeTarifa.Hora.ToString();
-                txtMediaEstadia.Text = tipoDeTarifa.MediaEstadia.ToString();
-                txtEstadia.Text = tipoDeTarifa.Estadia.ToString();
-                txtNoche.Text = tipoDeTarifa.Noche.ToString();
-                //txtSemana.Text = tipoDeTarifa.Semana.ToString();
-                //txtQuincena.Text = tipoDeTarifa.Quincena.ToString();
-                //txtMes.Text = tipoDeTarifa.Mes.ToString();
+                txtDescripcion.Text = tarifa.Descripcion.ToString();
+                cbxTipoVehiculo.SelectedValue = tarifa.TipoVehiculoId;
+                cbxTiempoTarifa.SelectedValue = tarifa.TiempoTarifaId;
+                txtImporte.Text = tarifa.Importe.ToString();
+
             }
         }
 
@@ -50,20 +50,17 @@ namespace Parking2022.Windows
         {
             if (ValidarDatos())
             {
-                if (tipoDeTarifa == null)
+                if (tarifa == null)
                 {
-                    tipoDeTarifa = new TipoDeTarifa();
+                    tarifa = new Tarifa();
                 }
 
-                tipoDeTarifa.TipoVehiculoId = (int) cbxTipoVehiculo.SelectedValue;
-                tipoDeTarifa.TipoDeVehiculo = (TipoDeVehiculo)cbxTipoVehiculo.SelectedItem;
-                tipoDeTarifa.Hora = decimal.Parse(txtHora.Text);
-                tipoDeTarifa.MediaEstadia = int.Parse(txtMediaEstadia.Text);
-                tipoDeTarifa.Estadia = int.Parse(txtEstadia.Text);
-                tipoDeTarifa.Noche = int.Parse(txtNoche.Text);
-                //tipoDeTarifa.Semana = int.Parse(txtSemana.Text);
-                //tipoDeTarifa.Quincena = int.Parse(txtQuincena.Text);
-                //tipoDeTarifa.Mes = int.Parse(txtMes.Text);
+                tarifa.Descripcion = txtDescripcion.Text;
+                tarifa.TipoVehiculoId = ((TipoDeVehiculo)cbxTipoVehiculo.SelectedItem).TipoVehiculoId;
+                tarifa.TipoDeVehiculo = (TipoDeVehiculo)cbxTipoVehiculo.SelectedItem;
+                tarifa.TiempoTarifaId = ((TiempoTarifa)cbxTiempoTarifa.SelectedItem).TiempoTarifaId;
+                tarifa.TiempoTarifa = (TiempoTarifa)cbxTiempoTarifa.SelectedItem;
+                tarifa.Importe = decimal.Parse(txtImporte.Text);
 
                 DialogResult = DialogResult.OK;
             }
@@ -77,6 +74,12 @@ namespace Parking2022.Windows
             {
                 valido = false;
                 errorProvider1.SetError(cbxTipoVehiculo, "Debe seleccionar un Vehiculo");
+
+            }
+            if (cbxTiempoTarifa.SelectedIndex == 0)
+            {
+                valido = false;
+                errorProvider1.SetError(cbxTiempoTarifa, "Debe seleccionar un Tiempo de Tarifa");
 
             }
             return valido;
@@ -97,12 +100,13 @@ namespace Parking2022.Windows
 
         }
 
-        public void SetTipoTarifa(TipoDeTarifa tipoDeTarifa)
+        public void SetTarifa(Tarifa tarifa)
         {
-            this.tipoDeTarifa=tipoDeTarifa;
+            this.tarifa=tarifa;
         }
 
         private TipoDeVehiculo tipoDeVehiculo;
+        private TiempoTarifa tiempoTarifa;
         private void cbxTipoVehiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //tipoDeVehiculo = (TipoDeVehiculo)cbxTipoVehiculo.SelectedItem;
@@ -115,6 +119,11 @@ namespace Parking2022.Windows
         }
 
         private void frmTarifaAE_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxTiempoTarifa_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

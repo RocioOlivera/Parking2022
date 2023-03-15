@@ -47,9 +47,11 @@
     <Compile Include="Repositorios\RepositorioAlquileresDiarios.cs" />
     <Compile Include="Repositorios\RepositorioClientes.cs" />
     <Compile Include="Repositorios\RepositorioCtasCtes.cs" />
+    <Compile Include="Repositorios\RepositorioFinalizarAlquileres.cs" />
     <Compile Include="Repositorios\RepositorioNrosSectores.cs" />
     <Compile Include="Repositorios\RepositorioTiposSectores.cs" />
     <Compile Include="Repositorios\RepositorioTarifas.cs" />
+    <Compile Include="Repositorios\RepositorioTiempoTarifas.cs" />
     <Compile Include="Repositorios\RepositorioTiposVehiculos.cs" />
   </ItemGroup>
   <ItemGroup>

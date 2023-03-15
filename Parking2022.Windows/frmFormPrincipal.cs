@@ -99,6 +99,11 @@ namespace Parking2022.Windows
             AbrirFormulario((IconMenuItem)sender, new frmAlquileresDiarios());
         }
 
+        private void IconFinalizarAlqDiario_Click(object sender, EventArgs e)
+        {
+            //AbrirFormulario((IconMenuItem)sender, new frmFinalizarAlquileres());
+        }
+
         //private void IconAlquileresDiarios_Click(object sender, EventArgs e)
         //{
         //    AbrirFormulario((IconMenuItem)sender, new frmAlquileresDiarios());

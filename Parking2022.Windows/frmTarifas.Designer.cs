@@ -31,11 +31,6 @@ namespace Parking2022.Windows
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTarifas));
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.cmnTipoVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnMediaEstadia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnEstadia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnNoche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TarifasMenuStrip = new System.Windows.Forms.MenuStrip();
             this.IconNuevo = new FontAwesome.Sharp.IconMenuItem();
             this.EditarMenu = new FontAwesome.Sharp.IconMenuItem();
@@ -44,6 +39,9 @@ namespace Parking2022.Windows
             this.AnteriorMenuPag = new FontAwesome.Sharp.IconMenuItem();
             this.SiguienteMenuPag = new FontAwesome.Sharp.IconMenuItem();
             this.UltimoMenuPag = new FontAwesome.Sharp.IconMenuItem();
+            this.cmnTipoVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnTiempoTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.TarifasMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -55,10 +53,8 @@ namespace Parking2022.Windows
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cmnTipoVehiculo,
-            this.cmnHora,
-            this.cmnMediaEstadia,
-            this.cmnEstadia,
-            this.cmnNoche});
+            this.cmnTiempoTarifa,
+            this.cmnImporte});
             this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDatos.Location = new System.Drawing.Point(0, 82);
             this.dgvDatos.MultiSelect = false;
@@ -69,46 +65,6 @@ namespace Parking2022.Windows
             this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(800, 368);
             this.dgvDatos.TabIndex = 3;
-            // 
-            // cmnTipoVehiculo
-            // 
-            this.cmnTipoVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnTipoVehiculo.HeaderText = "Tipo De Vehiculo";
-            this.cmnTipoVehiculo.MinimumWidth = 6;
-            this.cmnTipoVehiculo.Name = "cmnTipoVehiculo";
-            this.cmnTipoVehiculo.ReadOnly = true;
-            // 
-            // cmnHora
-            // 
-            this.cmnHora.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnHora.HeaderText = "Hora";
-            this.cmnHora.MinimumWidth = 6;
-            this.cmnHora.Name = "cmnHora";
-            this.cmnHora.ReadOnly = true;
-            // 
-            // cmnMediaEstadia
-            // 
-            this.cmnMediaEstadia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnMediaEstadia.HeaderText = "Media Estadia";
-            this.cmnMediaEstadia.MinimumWidth = 6;
-            this.cmnMediaEstadia.Name = "cmnMediaEstadia";
-            this.cmnMediaEstadia.ReadOnly = true;
-            // 
-            // cmnEstadia
-            // 
-            this.cmnEstadia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnEstadia.HeaderText = "Estadia";
-            this.cmnEstadia.MinimumWidth = 6;
-            this.cmnEstadia.Name = "cmnEstadia";
-            this.cmnEstadia.ReadOnly = true;
-            // 
-            // cmnNoche
-            // 
-            this.cmnNoche.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnNoche.HeaderText = "Noche";
-            this.cmnNoche.MinimumWidth = 6;
-            this.cmnNoche.Name = "cmnNoche";
-            this.cmnNoche.ReadOnly = true;
             // 
             // TarifasMenuStrip
             // 
@@ -223,6 +179,30 @@ namespace Parking2022.Windows
             this.UltimoMenuPag.Text = "Último";
             this.UltimoMenuPag.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // cmnTipoVehiculo
+            // 
+            this.cmnTipoVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnTipoVehiculo.HeaderText = "Tipo De Vehiculo";
+            this.cmnTipoVehiculo.MinimumWidth = 6;
+            this.cmnTipoVehiculo.Name = "cmnTipoVehiculo";
+            this.cmnTipoVehiculo.ReadOnly = true;
+            // 
+            // cmnTiempoTarifa
+            // 
+            this.cmnTiempoTarifa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnTiempoTarifa.HeaderText = "Tiempo de Tarifa";
+            this.cmnTiempoTarifa.MinimumWidth = 6;
+            this.cmnTiempoTarifa.Name = "cmnTiempoTarifa";
+            this.cmnTiempoTarifa.ReadOnly = true;
+            // 
+            // cmnImporte
+            // 
+            this.cmnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnImporte.HeaderText = "Importe";
+            this.cmnImporte.MinimumWidth = 6;
+            this.cmnImporte.Name = "cmnImporte";
+            this.cmnImporte.ReadOnly = true;
+            // 
             // frmTarifas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -253,9 +233,7 @@ namespace Parking2022.Windows
         private FontAwesome.Sharp.IconMenuItem SiguienteMenuPag;
         private FontAwesome.Sharp.IconMenuItem UltimoMenuPag;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnTipoVehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnHora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnMediaEstadia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnEstadia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnNoche;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnTiempoTarifa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnImporte;
     }
 }

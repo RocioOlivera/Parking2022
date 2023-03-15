@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Parking2022.Windows.Helpers;
 
 namespace Parking2022.Windows
 {
@@ -36,7 +37,11 @@ namespace Parking2022.Windows
 
         private void CancelarIconButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult dr = HelperMessage.Mensaje("¿Desea cancelar el ingreso del nuevo sector?", "Confirmar");
+            if (dr == DialogResult.No)
+            {
+                return;
+            }
         }
 
         private void GuardarIconButton_Click(object sender, EventArgs e)

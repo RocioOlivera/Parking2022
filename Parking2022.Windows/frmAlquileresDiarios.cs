@@ -20,13 +20,17 @@ namespace Parking2022.Windows
             InitializeComponent();
         }
         private ServicioAlquileresEnElDia servicio;
+        private ServicioNrosSectores servicioNrosSectores;
         private List<AlquilerDiario> lista;
+        private AlquilerDiario alquilerDiario;
+
         private void frmAlquileresDiarios_Load(object sender, EventArgs e)
         {
             servicio = new ServicioAlquileresEnElDia();
+            servicioNrosSectores = new ServicioNrosSectores();
             try
             {
-                lista = servicio.GetLista();
+                lista = servicio.GetListaLugaresDesocupados();
                 HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
             }
             catch (Exception exception)
@@ -113,7 +117,7 @@ namespace Parking2022.Windows
                 if (registrosAfectados == 0)
                 {
 
-                    HelperMessage.Mensaje(TipoMensaje.Warning, "Registro editado", "Mensaje");
+                    HelperMessage.Mensaje(TipoMensaje.Warning, "No se pudo editar", "Mensaje");
 
                 }
                 else
@@ -137,33 +141,28 @@ namespace Parking2022.Windows
                 return;
             }
 
-            var r = dgvDatos.SelectedRows[0];
-            AlquilerDiario alquilerDiario = (AlquilerDiario)r.Tag;
-            DialogResult dr = HelperMessage.Mensaje("¿Desea borrar el alquiler?", "Confirmar");
-            if (dr == DialogResult.No)
-            {
-                return;
-            }
-
             try
             {
-                if (servicio.EstaRelacionado(alquilerDiario))
+                var r = dgvDatos.SelectedRows[0];
+                AlquilerDiario alquilerDiario = (AlquilerDiario)r.Tag;
+                DialogResult dr = HelperMessage.Mensaje("¿Desea borrar el alquiler?", "Confirmar");
+                if (dr == DialogResult.No)
                 {
-                    HelperMessage.Mensaje(TipoMensaje.Error, "Alquiler relacionado!!", "ERROR");
+                    return;
+                }
+
+
+                int registrosAfectados = servicio.Borrar(alquilerDiario);
+                if (registrosAfectados == 0)
+                {
+                    MessageBox.Show("No se pudo borrar el alquiler porque está activo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
+
                 }
                 else
                 {
-                    int registros = servicio.Editar(alquilerDiario);
-                    if (registros == 0)
-                    {
-                        HelperMessage.Mensaje(TipoMensaje.Warning, "No se editaron registros", "Advertencia");
-                    }
-                    else
-                    {
-                        HelperGrid.BorrarFila(dgvDatos, r);
-
-                        HelperMessage.Mensaje(TipoMensaje.OK, "tarifa borrado", "Mensaje");
-                    }
+                    dgvDatos.Rows.Remove(r);
+                    MessageBox.Show("El alquiler abonado ha sido eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception exception)
@@ -172,14 +171,59 @@ namespace Parking2022.Windows
             }
         }
 
+        //Boton para actualizar el estado del sector
         private void btnFinalizarMenu_Click(object sender, EventArgs e)
         {
-            if (dgvDatos.SelectedRows.Count > 0)
+            lista = servicio.GetLista();
+            HelperForm.MostrarDatosEnGrilla(dgvDatos, lista);
+            HelperMessage.Mensaje(TipoMensaje.Exclamation, "Datos actualizados.", "Aviso");
+
+        }
+
+        //Retirar
+        private void IconRetirar_Click(object sender, EventArgs e)
+        {
+
+            if (dgvDatos.SelectedRows.Count == 0)
             {
-                btnFinalizarMenu.Enabled = true;
-                frmFinalizarAlquiler frm = new frmFinalizarAlquiler();
-                DialogResult = frm.ShowDialog(this);
+                return;
             }
+            int registrosAfectados = 0;
+            var r = dgvDatos.SelectedRows[0];
+            AlquilerDiario ad = (AlquilerDiario)r.Tag;
+
+            try
+            {
+
+                frmFinalizarAlquilerAE frm = new frmFinalizarAlquilerAE() { Text = "Finalizar Alquiler." };
+                frm.SetAlquilerDiario(ad);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                //ad = frm.GetAlquilerDiario();
+                //registrosAfectados = servicio.Borrar(ad);
+                //if (registrosAfectados == 0)
+                //{
+
+                //    HelperMessage.Mensaje(TipoMensaje.Warning, "No se pudo concretar el retiro.", "Mensaje");
+
+                //}
+                //else
+                //{
+                //    HelperGrid.SetearFila(r, ad);
+                //    HelperMessage.Mensaje(TipoMensaje.OK, "Vehiculo retirado.", "Mensaje");
+
+                //}
+            }
+            catch (Exception exception)
+            {
+                HelperGrid.SetearFila(r, ad);
+                HelperMessage.Mensaje(TipoMensaje.Error, exception.Message, "Error");
+            }
+            
         }
     }
 }

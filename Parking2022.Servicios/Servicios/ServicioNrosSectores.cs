@@ -121,5 +121,43 @@ namespace Parking2022.Servicios.Servicios
                 throw new Exception(e.Message);
             }
         }
+
+        public int ActualizarEstado(int ID, bool ocupado)
+        {
+            try
+            {
+                int registrosAfectados = 0;
+                using(var cn = ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    repositorio = new RepositorioNrosSectores(cn);
+                    registrosAfectados = repositorio.ActualizarEstado(ID,ocupado);
+
+                }
+                return registrosAfectados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int ActualizarEstadoSalida(int ID)
+        {
+            try
+            {
+                int registrosAfectados = 0;
+                using (var cn = ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    repositorio = new RepositorioNrosSectores(cn);
+                    registrosAfectados = repositorio.ActualizarEstadoSalida(ID);
+
+                }
+                return registrosAfectados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

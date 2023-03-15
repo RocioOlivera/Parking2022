@@ -41,15 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\ServicioAlquileresEnElDia.cs" />
     <Compile Include="Servicios\ServicioCtasCtes.cs" />
+    <Compile Include="Servicios\ServicioFinalizarAlquileres.cs" />
     <Compile Include="Servicios\ServicioNrosSectores.cs" />
     <Compile Include="Servicios\ServiciosClientes.cs" />
     <Compile Include="Servicios\ServicioTarifas.cs" />
     <Compile Include="Servicios\ServicioTiposDeSectores.cs" />
     <Compile Include="Servicios\ServicioTiposDeVehiculos.cs" />
+    <Compile Include="Servicios\ServicioTiempoTarifa.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Parking2022.Datos\Parking2022.Datos.csproj">

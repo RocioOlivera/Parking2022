@@ -16,6 +16,7 @@ namespace Parking2022.Datos.Repositorios
         {
             this.cn = cn;
         }
+
         public List<NrosSectores> GetLista(TipoDeSector tipoDeSector=null)
         {
             List<NrosSectores> lista = new List<NrosSectores>();
@@ -25,7 +26,7 @@ namespace Parking2022.Datos.Repositorios
                     new StringBuilder("SELECT NroId, TipoSectorId, Nro, Ocupado, RowVersion FROM NrosSectores ");
                 if (tipoDeSector!=null)
                 {
-                    sb.Append("WHERE TipoSectorId=@id ORDER BY Nro");
+                    sb.Append("WHERE (Ocupado=0) and (TipoSectorId=@id) ORDER BY Nro");
                 }
                 else
                 {
@@ -58,7 +59,7 @@ namespace Parking2022.Datos.Repositorios
             int registrosAfectados = 0;
             try
             {
-                var cadenaComando = "INSERT INTO NrosSectores (NroId, TipoSectorId, Nro, Ocupado, VALUES (@id, @tipo, @nro, @ocu)";
+                var cadenaComando = "INSERT INTO NrosSectores (NroId, TipoSectorId, Nro, Ocupado) VALUES (@id, @tipo, @nro, @ocu)";
                 var comando=new SqlCommand(cadenaComando, cn);
                 comando.Parameters.AddWithValue("@tipo", nrosSectores.TipoSectorId);
                 comando.Parameters.AddWithValue("@tipo", nrosSectores.TipoSectorId);
@@ -186,6 +187,68 @@ namespace Parking2022.Datos.Repositorios
                 }
 
                 return nrosSectores;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int ActualizarEstado(int ID, bool ocupado)
+        {
+            int registrosAfectados = 0;
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("UPDATE NrosSectores SET Ocupado=@ocupado WHERE NroId=@id");
+                var cadenaComando = sb.ToString();
+                var comando = new SqlCommand(cadenaComando, cn);
+                comando.Parameters.AddWithValue("@ocupado", ocupado);
+
+                comando.Parameters.AddWithValue("@id", ID);
+                registrosAfectados = comando.ExecuteNonQuery();
+                if (registrosAfectados == 0)
+                {
+                    throw new Exception("Error al actualizar el estado");
+                }
+                else
+                {
+                    cadenaComando = "SELECT RowVersion FROM NrosSectores WHERE NroId=@id";
+                    comando = new SqlCommand(cadenaComando, cn);
+                    comando.Parameters.AddWithValue("@id", ID);
+                }
+                return registrosAfectados;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int ActualizarEstadoSalida(int ID)
+        {
+            int registrosAfectados = 0;
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("UPDATE NrosSectores SET Ocupado=0 WHERE NroId=@id");
+                var cadenaComando = sb.ToString();
+                var comando = new SqlCommand(cadenaComando, cn);
+                //comando.Parameters.AddWithValue("@ocupado", ocupado);
+
+                comando.Parameters.AddWithValue("@id", ID);
+                registrosAfectados = comando.ExecuteNonQuery();
+                if (registrosAfectados == 0)
+                {
+                    throw new Exception("Error al actualizar el estado");
+                }
+                else
+                {
+                    cadenaComando = "SELECT RowVersion FROM NrosSectores WHERE NroId=@id";
+                    comando = new SqlCommand(cadenaComando, cn);
+                    comando.Parameters.AddWithValue("@id", ID);
+                }
+                return registrosAfectados;
             }
             catch (Exception e)
             {

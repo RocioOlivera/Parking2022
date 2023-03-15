@@ -22,7 +22,7 @@ namespace Parking2022.Entidades.Entidades
         public bool Abonado { get; set; }
         public bool Activo { get; set; }
         public byte[] RowVersion { get; set; }
-        public TipoDeTarifa TipoDeTarifa { get; set; }
+        public Tarifa TipoDeTarifa { get; set; }
         public TipoDeSector TipoDeSector { get; set; }
         public TipoDeVehiculo TipoDeVehiculo { get; set; }
         public Cliente Cliente { get; set; }
