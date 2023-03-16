@@ -46,6 +46,7 @@ namespace Parking2022.Windows
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.CancelarIconButton = new FontAwesome.Sharp.IconButton();
             this.label6 = new System.Windows.Forms.Label();
             this.lblTotalHoras = new System.Windows.Forms.Label();
             this.cbxImporteAPagar = new System.Windows.Forms.ComboBox();
@@ -55,9 +56,14 @@ namespace Parking2022.Windows
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.GuardarIconButton = new FontAwesome.Sharp.IconButton();
-            this.CancelarIconButton = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picCuadroTarifario = new System.Windows.Forms.PictureBox();
+            this.btnTarjetas = new FontAwesome.Sharp.IconButton();
+            this.btnCuentadni = new FontAwesome.Sharp.IconButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnTransferencias = new FontAwesome.Sharp.IconButton();
+            this.btnMercadoPago = new FontAwesome.Sharp.IconButton();
             this.btnEfectivo = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label13 = new System.Windows.Forms.Label();
@@ -67,20 +73,14 @@ namespace Parking2022.Windows
             this.txtImporte = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnMercadoPago = new FontAwesome.Sharp.IconButton();
-            this.btnTransferencias = new FontAwesome.Sharp.IconButton();
-            this.label16 = new System.Windows.Forms.Label();
-            this.btnCuentadni = new FontAwesome.Sharp.IconButton();
-            this.btnTarjetas = new FontAwesome.Sharp.IconButton();
-            this.picCuadroTarifario = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureTilde)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCuadroTarifario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -250,6 +250,22 @@ namespace Parking2022.Windows
             this.label8.TabIndex = 100;
             this.label8.Text = "Patente:";
             // 
+            // CancelarIconButton
+            // 
+            this.CancelarIconButton.BackColor = System.Drawing.Color.Red;
+            this.CancelarIconButton.ForeColor = System.Drawing.Color.White;
+            this.CancelarIconButton.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.CancelarIconButton.IconColor = System.Drawing.Color.White;
+            this.CancelarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.CancelarIconButton.Location = new System.Drawing.Point(13, 498);
+            this.CancelarIconButton.Margin = new System.Windows.Forms.Padding(4);
+            this.CancelarIconButton.Name = "CancelarIconButton";
+            this.CancelarIconButton.Size = new System.Drawing.Size(62, 58);
+            this.CancelarIconButton.TabIndex = 90;
+            this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CancelarIconButton.UseVisualStyleBackColor = false;
+            this.CancelarIconButton.Click += new System.EventHandler(this.CancelarIconButton_Click_1);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -278,7 +294,7 @@ namespace Parking2022.Windows
             this.cbxImporteAPagar.Location = new System.Drawing.Point(283, 445);
             this.cbxImporteAPagar.Name = "cbxImporteAPagar";
             this.cbxImporteAPagar.Size = new System.Drawing.Size(126, 28);
-            this.cbxImporteAPagar.TabIndex = 97;
+            this.cbxImporteAPagar.TabIndex = 1;
             this.cbxImporteAPagar.SelectedIndexChanged += new System.EventHandler(this.cbxImporteAPagar_SelectedIndexChanged_1);
             // 
             // label5
@@ -310,7 +326,7 @@ namespace Parking2022.Windows
             this.cbxTiempoTarifa.Location = new System.Drawing.Point(53, 409);
             this.cbxTiempoTarifa.Name = "cbxTiempoTarifa";
             this.cbxTiempoTarifa.Size = new System.Drawing.Size(218, 24);
-            this.cbxTiempoTarifa.TabIndex = 94;
+            this.cbxTiempoTarifa.TabIndex = 0;
             this.cbxTiempoTarifa.SelectedIndexChanged += new System.EventHandler(this.cbxTiempoTarifa_SelectedIndexChanged_1);
             // 
             // label4
@@ -345,27 +361,11 @@ namespace Parking2022.Windows
             this.GuardarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.GuardarIconButton.Name = "GuardarIconButton";
             this.GuardarIconButton.Size = new System.Drawing.Size(145, 58);
-            this.GuardarIconButton.TabIndex = 91;
+            this.GuardarIconButton.TabIndex = 2;
             this.GuardarIconButton.Text = "CONTINUAR";
             this.GuardarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.GuardarIconButton.UseVisualStyleBackColor = false;
             this.GuardarIconButton.Click += new System.EventHandler(this.GuardarIconButton_Click_1);
-            // 
-            // CancelarIconButton
-            // 
-            this.CancelarIconButton.BackColor = System.Drawing.Color.Red;
-            this.CancelarIconButton.ForeColor = System.Drawing.Color.White;
-            this.CancelarIconButton.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            this.CancelarIconButton.IconColor = System.Drawing.Color.White;
-            this.CancelarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.CancelarIconButton.Location = new System.Drawing.Point(13, 498);
-            this.CancelarIconButton.Margin = new System.Windows.Forms.Padding(4);
-            this.CancelarIconButton.Name = "CancelarIconButton";
-            this.CancelarIconButton.Size = new System.Drawing.Size(62, 58);
-            this.CancelarIconButton.TabIndex = 90;
-            this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CancelarIconButton.UseVisualStyleBackColor = false;
-            this.CancelarIconButton.Click += new System.EventHandler(this.CancelarIconButton_Click_1);
             // 
             // label1
             // 
@@ -400,6 +400,102 @@ namespace Parking2022.Windows
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "CONCRETAR PAGO";
             // 
+            // picCuadroTarifario
+            // 
+            this.picCuadroTarifario.Image = ((System.Drawing.Image)(resources.GetObject("picCuadroTarifario.Image")));
+            this.picCuadroTarifario.Location = new System.Drawing.Point(-10, -4);
+            this.picCuadroTarifario.Name = "picCuadroTarifario";
+            this.picCuadroTarifario.Size = new System.Drawing.Size(364, 564);
+            this.picCuadroTarifario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picCuadroTarifario.TabIndex = 113;
+            this.picCuadroTarifario.TabStop = false;
+            // 
+            // btnTarjetas
+            // 
+            this.btnTarjetas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTarjetas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTarjetas.BackgroundImage")));
+            this.btnTarjetas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTarjetas.Enabled = false;
+            this.btnTarjetas.ForeColor = System.Drawing.Color.White;
+            this.btnTarjetas.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
+            this.btnTarjetas.IconColor = System.Drawing.Color.Transparent;
+            this.btnTarjetas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTarjetas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnTarjetas.Location = new System.Drawing.Point(176, 201);
+            this.btnTarjetas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTarjetas.Name = "btnTarjetas";
+            this.btnTarjetas.Size = new System.Drawing.Size(104, 52);
+            this.btnTarjetas.TabIndex = 118;
+            this.btnTarjetas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTarjetas.UseVisualStyleBackColor = false;
+            // 
+            // btnCuentadni
+            // 
+            this.btnCuentadni.BackColor = System.Drawing.Color.White;
+            this.btnCuentadni.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCuentadni.BackgroundImage")));
+            this.btnCuentadni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCuentadni.Enabled = false;
+            this.btnCuentadni.ForeColor = System.Drawing.Color.White;
+            this.btnCuentadni.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
+            this.btnCuentadni.IconColor = System.Drawing.Color.Transparent;
+            this.btnCuentadni.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCuentadni.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCuentadni.Location = new System.Drawing.Point(233, 142);
+            this.btnCuentadni.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCuentadni.Name = "btnCuentadni";
+            this.btnCuentadni.Size = new System.Drawing.Size(104, 52);
+            this.btnCuentadni.TabIndex = 117;
+            this.btnCuentadni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCuentadni.UseVisualStyleBackColor = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(4, 115);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(337, 23);
+            this.label16.TabIndex = 116;
+            this.label16.Text = "- Seleccione un medio de pago -";
+            // 
+            // btnTransferencias
+            // 
+            this.btnTransferencias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTransferencias.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTransferencias.BackgroundImage")));
+            this.btnTransferencias.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTransferencias.Enabled = false;
+            this.btnTransferencias.ForeColor = System.Drawing.Color.White;
+            this.btnTransferencias.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
+            this.btnTransferencias.IconColor = System.Drawing.Color.Transparent;
+            this.btnTransferencias.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTransferencias.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnTransferencias.Location = new System.Drawing.Point(64, 201);
+            this.btnTransferencias.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTransferencias.Name = "btnTransferencias";
+            this.btnTransferencias.Size = new System.Drawing.Size(104, 52);
+            this.btnTransferencias.TabIndex = 115;
+            this.btnTransferencias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTransferencias.UseVisualStyleBackColor = false;
+            // 
+            // btnMercadoPago
+            // 
+            this.btnMercadoPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnMercadoPago.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMercadoPago.BackgroundImage")));
+            this.btnMercadoPago.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMercadoPago.Enabled = false;
+            this.btnMercadoPago.ForeColor = System.Drawing.Color.White;
+            this.btnMercadoPago.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
+            this.btnMercadoPago.IconColor = System.Drawing.Color.Transparent;
+            this.btnMercadoPago.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMercadoPago.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMercadoPago.Location = new System.Drawing.Point(121, 142);
+            this.btnMercadoPago.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMercadoPago.Name = "btnMercadoPago";
+            this.btnMercadoPago.Size = new System.Drawing.Size(104, 52);
+            this.btnMercadoPago.TabIndex = 114;
+            this.btnMercadoPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMercadoPago.UseVisualStyleBackColor = false;
+            // 
             // btnEfectivo
             // 
             this.btnEfectivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
@@ -433,7 +529,7 @@ namespace Parking2022.Windows
             this.iconButton1.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(178, 52);
-            this.iconButton1.TabIndex = 112;
+            this.iconButton1.TabIndex = 1;
             this.iconButton1.Text = "FINALIZAR RETIRO";
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
@@ -477,7 +573,7 @@ namespace Parking2022.Windows
             this.txtDineroRecibido.Location = new System.Drawing.Point(60, 316);
             this.txtDineroRecibido.Name = "txtDineroRecibido";
             this.txtDineroRecibido.Size = new System.Drawing.Size(221, 34);
-            this.txtDineroRecibido.TabIndex = 8;
+            this.txtDineroRecibido.TabIndex = 0;
             this.txtDineroRecibido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtImporte
@@ -504,102 +600,6 @@ namespace Parking2022.Windows
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // btnMercadoPago
-            // 
-            this.btnMercadoPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnMercadoPago.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMercadoPago.BackgroundImage")));
-            this.btnMercadoPago.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMercadoPago.Enabled = false;
-            this.btnMercadoPago.ForeColor = System.Drawing.Color.White;
-            this.btnMercadoPago.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
-            this.btnMercadoPago.IconColor = System.Drawing.Color.Transparent;
-            this.btnMercadoPago.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnMercadoPago.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMercadoPago.Location = new System.Drawing.Point(121, 142);
-            this.btnMercadoPago.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMercadoPago.Name = "btnMercadoPago";
-            this.btnMercadoPago.Size = new System.Drawing.Size(104, 52);
-            this.btnMercadoPago.TabIndex = 114;
-            this.btnMercadoPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnMercadoPago.UseVisualStyleBackColor = false;
-            // 
-            // btnTransferencias
-            // 
-            this.btnTransferencias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTransferencias.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTransferencias.BackgroundImage")));
-            this.btnTransferencias.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTransferencias.Enabled = false;
-            this.btnTransferencias.ForeColor = System.Drawing.Color.White;
-            this.btnTransferencias.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
-            this.btnTransferencias.IconColor = System.Drawing.Color.Transparent;
-            this.btnTransferencias.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTransferencias.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTransferencias.Location = new System.Drawing.Point(64, 201);
-            this.btnTransferencias.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTransferencias.Name = "btnTransferencias";
-            this.btnTransferencias.Size = new System.Drawing.Size(104, 52);
-            this.btnTransferencias.TabIndex = 115;
-            this.btnTransferencias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTransferencias.UseVisualStyleBackColor = false;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(4, 115);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(337, 23);
-            this.label16.TabIndex = 116;
-            this.label16.Text = "- Seleccione un medio de pago -";
-            // 
-            // btnCuentadni
-            // 
-            this.btnCuentadni.BackColor = System.Drawing.Color.White;
-            this.btnCuentadni.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCuentadni.BackgroundImage")));
-            this.btnCuentadni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCuentadni.Enabled = false;
-            this.btnCuentadni.ForeColor = System.Drawing.Color.White;
-            this.btnCuentadni.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
-            this.btnCuentadni.IconColor = System.Drawing.Color.Transparent;
-            this.btnCuentadni.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCuentadni.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCuentadni.Location = new System.Drawing.Point(233, 142);
-            this.btnCuentadni.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCuentadni.Name = "btnCuentadni";
-            this.btnCuentadni.Size = new System.Drawing.Size(104, 52);
-            this.btnCuentadni.TabIndex = 117;
-            this.btnCuentadni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCuentadni.UseVisualStyleBackColor = false;
-            // 
-            // btnTarjetas
-            // 
-            this.btnTarjetas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTarjetas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTarjetas.BackgroundImage")));
-            this.btnTarjetas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTarjetas.Enabled = false;
-            this.btnTarjetas.ForeColor = System.Drawing.Color.White;
-            this.btnTarjetas.IconChar = FontAwesome.Sharp.IconChar.DollarSign;
-            this.btnTarjetas.IconColor = System.Drawing.Color.Transparent;
-            this.btnTarjetas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTarjetas.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTarjetas.Location = new System.Drawing.Point(176, 201);
-            this.btnTarjetas.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTarjetas.Name = "btnTarjetas";
-            this.btnTarjetas.Size = new System.Drawing.Size(104, 52);
-            this.btnTarjetas.TabIndex = 118;
-            this.btnTarjetas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTarjetas.UseVisualStyleBackColor = false;
-            // 
-            // picCuadroTarifario
-            // 
-            this.picCuadroTarifario.Image = ((System.Drawing.Image)(resources.GetObject("picCuadroTarifario.Image")));
-            this.picCuadroTarifario.Location = new System.Drawing.Point(-10, -4);
-            this.picCuadroTarifario.Name = "picCuadroTarifario";
-            this.picCuadroTarifario.Size = new System.Drawing.Size(364, 564);
-            this.picCuadroTarifario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picCuadroTarifario.TabIndex = 113;
-            this.picCuadroTarifario.TabStop = false;
-            // 
             // frmFinalizarAlquilerAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -622,8 +622,8 @@ namespace Parking2022.Windows
             ((System.ComponentModel.ISupportInitialize)(this.PictureTilde)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCuadroTarifario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

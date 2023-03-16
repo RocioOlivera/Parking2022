@@ -47,11 +47,11 @@ namespace Parking2022.Windows
             this.GuardarIconButton.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.GuardarIconButton.IconColor = System.Drawing.Color.White;
             this.GuardarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.GuardarIconButton.Location = new System.Drawing.Point(171, 347);
+            this.GuardarIconButton.Location = new System.Drawing.Point(452, 339);
             this.GuardarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.GuardarIconButton.Name = "GuardarIconButton";
             this.GuardarIconButton.Size = new System.Drawing.Size(161, 73);
-            this.GuardarIconButton.TabIndex = 16;
+            this.GuardarIconButton.TabIndex = 1;
             this.GuardarIconButton.Text = "Guardar";
             this.GuardarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarIconButton.UseVisualStyleBackColor = false;
@@ -65,11 +65,11 @@ namespace Parking2022.Windows
             this.CancelarIconButton.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.CancelarIconButton.IconColor = System.Drawing.Color.White;
             this.CancelarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.CancelarIconButton.Location = new System.Drawing.Point(483, 347);
+            this.CancelarIconButton.Location = new System.Drawing.Point(157, 339);
             this.CancelarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.CancelarIconButton.Name = "CancelarIconButton";
             this.CancelarIconButton.Size = new System.Drawing.Size(161, 73);
-            this.CancelarIconButton.TabIndex = 15;
+            this.CancelarIconButton.TabIndex = 2;
             this.CancelarIconButton.Text = "Cancelar";
             this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarIconButton.UseVisualStyleBackColor = false;
@@ -80,7 +80,7 @@ namespace Parking2022.Windows
             this.txtTipoSector.Location = new System.Drawing.Point(265, 73);
             this.txtTipoSector.Name = "txtTipoSector";
             this.txtTipoSector.Size = new System.Drawing.Size(419, 22);
-            this.txtTipoSector.TabIndex = 14;
+            this.txtTipoSector.TabIndex = 0;
             // 
             // label1
             // 

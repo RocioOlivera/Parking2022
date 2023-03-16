@@ -29,11 +29,15 @@ namespace Parking2022.Windows
 
         private void frmFormPrincipal_Load(object sender, EventArgs e)
         {
+            ActualizarRecaudacion();
+        }
+
+        public void ActualizarRecaudacion()
+        {
             RepositorioFinalizarAlquileres repositorioFinalizar = new RepositorioFinalizarAlquileres(cn);
             lblFecha.Text = DateTime.Now.ToShortDateString();
             lblRecaudado.Text = repositorioFinalizar.GetRecaudado().ToString();
         }
-
         
         //protected override void OnLoad(EventArgs e)
         //{
@@ -117,6 +121,11 @@ namespace Parking2022.Windows
         private void IconFinalizarAlqDiario_Click(object sender, EventArgs e)
         {
             //AbrirFormulario((IconMenuItem)sender, new frmFinalizarAlquileres());
+        }
+
+        private void btnActualizarRecaudacion_Click(object sender, EventArgs e)
+        {
+            ActualizarRecaudacion();
         }
 
         //private void IconAlquileresDiarios_Click(object sender, EventArgs e)

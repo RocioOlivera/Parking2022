@@ -23,9 +23,13 @@ namespace Parking2022.Datos.Repositorios
             double recaudado;
             try
             {
-                var cadenaComando = "SELECT SUM(Monto) FROM RecaudacionDiaria WHERE Fecha=CONVERT(DATE,GETDATE())";
-                SqlCommand comando = new SqlCommand(cadenaComando, cn);
-                return recaudado=(double)(decimal)comando.ExecuteScalar();
+                using (var c=ConexionBd.GetInstancia().AbrirConexion())
+                {
+                    var cadenaComando = "SELECT SUM(Monto) FROM RecaudacionDiaria WHERE Fecha=CONVERT(DATE,GETDATE())";
+                    SqlCommand comando = new SqlCommand(cadenaComando, c);
+                    return recaudado=(double)(decimal)comando.ExecuteScalar();                    
+                }
+
 
             }
             catch (Exception e)

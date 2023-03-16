@@ -60,7 +60,7 @@ namespace Parking2022.Windows
             this.GuardarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.GuardarIconButton.Name = "GuardarIconButton";
             this.GuardarIconButton.Size = new System.Drawing.Size(211, 64);
-            this.GuardarIconButton.TabIndex = 16;
+            this.GuardarIconButton.TabIndex = 4;
             this.GuardarIconButton.Text = "Guardar Ingreso";
             this.GuardarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarIconButton.UseVisualStyleBackColor = false;
@@ -78,7 +78,7 @@ namespace Parking2022.Windows
             this.CancelarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.CancelarIconButton.Name = "CancelarIconButton";
             this.CancelarIconButton.Size = new System.Drawing.Size(136, 64);
-            this.CancelarIconButton.TabIndex = 15;
+            this.CancelarIconButton.TabIndex = 5;
             this.CancelarIconButton.Text = "Cancelar";
             this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarIconButton.UseVisualStyleBackColor = false;
@@ -89,7 +89,7 @@ namespace Parking2022.Windows
             this.txtPatente.Location = new System.Drawing.Point(260, 146);
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(224, 22);
-            this.txtPatente.TabIndex = 13;
+            this.txtPatente.TabIndex = 1;
             // 
             // label3
             // 
@@ -125,7 +125,7 @@ namespace Parking2022.Windows
             this.cbxTipoSector.Location = new System.Drawing.Point(260, 199);
             this.cbxTipoSector.Name = "cbxTipoSector";
             this.cbxTipoSector.Size = new System.Drawing.Size(224, 24);
-            this.cbxTipoSector.TabIndex = 17;
+            this.cbxTipoSector.TabIndex = 2;
             this.cbxTipoSector.SelectedIndexChanged += new System.EventHandler(this.cbxTipoSector_SelectedIndexChanged);
             // 
             // cbxNroSector
@@ -135,7 +135,7 @@ namespace Parking2022.Windows
             this.cbxNroSector.Location = new System.Drawing.Point(260, 253);
             this.cbxNroSector.Name = "cbxNroSector";
             this.cbxNroSector.Size = new System.Drawing.Size(224, 24);
-            this.cbxNroSector.TabIndex = 19;
+            this.cbxNroSector.TabIndex = 3;
             this.cbxNroSector.SelectedIndexChanged += new System.EventHandler(this.cbxNroSector_SelectedIndexChanged);
             // 
             // label4
@@ -172,7 +172,7 @@ namespace Parking2022.Windows
             this.cbxTipoVehiculo.Location = new System.Drawing.Point(260, 91);
             this.cbxTipoVehiculo.Name = "cbxTipoVehiculo";
             this.cbxTipoVehiculo.Size = new System.Drawing.Size(224, 24);
-            this.cbxTipoVehiculo.TabIndex = 24;
+            this.cbxTipoVehiculo.TabIndex = 0;
             this.cbxTipoVehiculo.SelectedIndexChanged += new System.EventHandler(this.cbxTipoVehiculo_SelectedIndexChanged);
             // 
             // errorProvider1

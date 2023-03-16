@@ -42,6 +42,8 @@ namespace Parking2022.Windows
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblRecaudado = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnActualizarRecaudacion = new FontAwesome.Sharp.IconButton();
             this.BarraMenuPrincipalStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -194,13 +196,14 @@ namespace Parking2022.Windows
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblRecaudado);
             this.groupBox1.Controls.Add(this.lblFecha);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(1340, 10);
+            this.groupBox1.Location = new System.Drawing.Point(1421, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 100);
+            this.groupBox1.Size = new System.Drawing.Size(189, 100);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Recaudación Diaria";
@@ -208,7 +211,7 @@ namespace Parking2022.Windows
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(107, 34);
+            this.lblFecha.Location = new System.Drawing.Point(73, 34);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(59, 20);
             this.lblFecha.TabIndex = 0;
@@ -217,17 +220,42 @@ namespace Parking2022.Windows
             // lblRecaudado
             // 
             this.lblRecaudado.AutoSize = true;
-            this.lblRecaudado.Location = new System.Drawing.Point(107, 65);
+            this.lblRecaudado.Location = new System.Drawing.Point(73, 65);
             this.lblRecaudado.Name = "lblRecaudado";
             this.lblRecaudado.Size = new System.Drawing.Size(59, 20);
             this.lblRecaudado.TabIndex = 1;
             this.lblRecaudado.Text = "_____";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(39, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(19, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "$";
+            // 
+            // btnActualizarRecaudacion
+            // 
+            this.btnActualizarRecaudacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnActualizarRecaudacion.IconChar = FontAwesome.Sharp.IconChar.UndoAlt;
+            this.btnActualizarRecaudacion.IconColor = System.Drawing.Color.Black;
+            this.btnActualizarRecaudacion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnActualizarRecaudacion.IconSize = 20;
+            this.btnActualizarRecaudacion.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnActualizarRecaudacion.Location = new System.Drawing.Point(1380, 53);
+            this.btnActualizarRecaudacion.Name = "btnActualizarRecaudacion";
+            this.btnActualizarRecaudacion.Size = new System.Drawing.Size(35, 29);
+            this.btnActualizarRecaudacion.TabIndex = 3;
+            this.btnActualizarRecaudacion.UseVisualStyleBackColor = false;
+            this.btnActualizarRecaudacion.Click += new System.EventHandler(this.btnActualizarRecaudacion_Click);
             // 
             // frmFormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1622, 753);
+            this.Controls.Add(this.btnActualizarRecaudacion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ContenedorPanel);
             this.Controls.Add(this.BarraMenuPrincipalStrip);
@@ -258,6 +286,8 @@ namespace Parking2022.Windows
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblRecaudado;
         private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label label1;
+        private FontAwesome.Sharp.IconButton btnActualizarRecaudacion;
     }
 }
 

@@ -305,14 +305,15 @@ namespace Parking2022.Windows
 
                     
                     AgregarRecaudacion();
+                    
 
                     Close();
-            
                 }
-            }
-           
-        }
 
+                
+            }
+        }
+        
         private void ActualizarEstadoSalida()
         {
             ServicioNrosSectores servicioNros = new ServicioNrosSectores();

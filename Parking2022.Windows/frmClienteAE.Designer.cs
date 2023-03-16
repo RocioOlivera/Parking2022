@@ -75,21 +75,21 @@ namespace Parking2022.Windows
             this.txtApellidoYNombre.Location = new System.Drawing.Point(243, 63);
             this.txtApellidoYNombre.Name = "txtApellidoYNombre";
             this.txtApellidoYNombre.Size = new System.Drawing.Size(419, 22);
-            this.txtApellidoYNombre.TabIndex = 3;
+            this.txtApellidoYNombre.TabIndex = 0;
             // 
             // txtNumDocumento
             // 
             this.txtNumDocumento.Location = new System.Drawing.Point(243, 127);
             this.txtNumDocumento.Name = "txtNumDocumento";
             this.txtNumDocumento.Size = new System.Drawing.Size(419, 22);
-            this.txtNumDocumento.TabIndex = 4;
+            this.txtNumDocumento.TabIndex = 1;
             // 
             // txtTelContacto
             // 
             this.txtTelContacto.Location = new System.Drawing.Point(243, 184);
             this.txtTelContacto.Name = "txtTelContacto";
             this.txtTelContacto.Size = new System.Drawing.Size(419, 22);
-            this.txtTelContacto.TabIndex = 5;
+            this.txtTelContacto.TabIndex = 2;
             // 
             // CancelarIconButton
             // 
@@ -98,11 +98,11 @@ namespace Parking2022.Windows
             this.CancelarIconButton.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.CancelarIconButton.IconColor = System.Drawing.Color.White;
             this.CancelarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.CancelarIconButton.Location = new System.Drawing.Point(444, 340);
+            this.CancelarIconButton.Location = new System.Drawing.Point(79, 334);
             this.CancelarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.CancelarIconButton.Name = "CancelarIconButton";
             this.CancelarIconButton.Size = new System.Drawing.Size(161, 73);
-            this.CancelarIconButton.TabIndex = 7;
+            this.CancelarIconButton.TabIndex = 3;
             this.CancelarIconButton.Text = "Cancelar";
             this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarIconButton.UseVisualStyleBackColor = false;
@@ -115,11 +115,11 @@ namespace Parking2022.Windows
             this.GuardarIconButton.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.GuardarIconButton.IconColor = System.Drawing.Color.White;
             this.GuardarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.GuardarIconButton.Location = new System.Drawing.Point(132, 340);
+            this.GuardarIconButton.Location = new System.Drawing.Point(479, 334);
             this.GuardarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.GuardarIconButton.Name = "GuardarIconButton";
             this.GuardarIconButton.Size = new System.Drawing.Size(161, 73);
-            this.GuardarIconButton.TabIndex = 8;
+            this.GuardarIconButton.TabIndex = 4;
             this.GuardarIconButton.Text = "Guardar";
             this.GuardarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarIconButton.UseVisualStyleBackColor = false;

@@ -53,11 +53,11 @@ namespace Parking2022.Windows
             this.GuardarIconButton.IconChar = FontAwesome.Sharp.IconChar.Save;
             this.GuardarIconButton.IconColor = System.Drawing.Color.White;
             this.GuardarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.GuardarIconButton.Location = new System.Drawing.Point(175, 338);
+            this.GuardarIconButton.Location = new System.Drawing.Point(461, 334);
             this.GuardarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.GuardarIconButton.Name = "GuardarIconButton";
             this.GuardarIconButton.Size = new System.Drawing.Size(161, 73);
-            this.GuardarIconButton.TabIndex = 16;
+            this.GuardarIconButton.TabIndex = 4;
             this.GuardarIconButton.Text = "Guardar";
             this.GuardarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarIconButton.UseVisualStyleBackColor = false;
@@ -70,11 +70,11 @@ namespace Parking2022.Windows
             this.CancelarIconButton.IconChar = FontAwesome.Sharp.IconChar.Ban;
             this.CancelarIconButton.IconColor = System.Drawing.Color.White;
             this.CancelarIconButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.CancelarIconButton.Location = new System.Drawing.Point(478, 338);
+            this.CancelarIconButton.Location = new System.Drawing.Point(160, 334);
             this.CancelarIconButton.Margin = new System.Windows.Forms.Padding(4);
             this.CancelarIconButton.Name = "CancelarIconButton";
             this.CancelarIconButton.Size = new System.Drawing.Size(161, 73);
-            this.CancelarIconButton.TabIndex = 15;
+            this.CancelarIconButton.TabIndex = 5;
             this.CancelarIconButton.Text = "Cancelar";
             this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarIconButton.UseVisualStyleBackColor = false;
@@ -104,7 +104,7 @@ namespace Parking2022.Windows
             this.txtDescripcion.Location = new System.Drawing.Point(235, 92);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(423, 22);
-            this.txtDescripcion.TabIndex = 25;
+            this.txtDescripcion.TabIndex = 0;
             // 
             // label6
             // 
@@ -120,7 +120,7 @@ namespace Parking2022.Windows
             this.txtImporte.Location = new System.Drawing.Point(343, 284);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(141, 22);
-            this.txtImporte.TabIndex = 31;
+            this.txtImporte.TabIndex = 3;
             this.txtImporte.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // label9
@@ -139,7 +139,7 @@ namespace Parking2022.Windows
             this.cbxTipoVehiculo.Location = new System.Drawing.Point(301, 166);
             this.cbxTipoVehiculo.Name = "cbxTipoVehiculo";
             this.cbxTipoVehiculo.Size = new System.Drawing.Size(322, 24);
-            this.cbxTipoVehiculo.TabIndex = 32;
+            this.cbxTipoVehiculo.TabIndex = 1;
             this.cbxTipoVehiculo.SelectedIndexChanged += new System.EventHandler(this.cbxTipoVehiculo_SelectedIndexChanged);
             // 
             // errorProvider1
@@ -153,7 +153,7 @@ namespace Parking2022.Windows
             this.cbxTiempoTarifa.Location = new System.Drawing.Point(300, 213);
             this.cbxTiempoTarifa.Name = "cbxTiempoTarifa";
             this.cbxTiempoTarifa.Size = new System.Drawing.Size(322, 24);
-            this.cbxTiempoTarifa.TabIndex = 34;
+            this.cbxTiempoTarifa.TabIndex = 2;
             this.cbxTiempoTarifa.SelectedIndexChanged += new System.EventHandler(this.cbxTiempoTarifa_SelectedIndexChanged);
             // 
             // label2
